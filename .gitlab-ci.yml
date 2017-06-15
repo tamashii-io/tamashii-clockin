@@ -56,12 +56,12 @@ rubocop:
 
 eslint:
   stage: test
-  image: "node:7.4"
+  image: "node:8.1"
   services: []
   before_script:
-    - npm install
+    - yarn
   script:
-    - npm run eslint
+    - yarn run eslint
 
 
 scsslint:
