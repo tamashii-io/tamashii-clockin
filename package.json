@@ -1,5 +1,8 @@
 {
   "name": "tamashii-clockin",
+  "scripts": {
+    "eslint": "eslint app/assets/javascripts app/javascript/packs --ext .js --ext .jsx"
+  },
   "private": true,
   "dependencies": {
     "autoprefixer": "^7.1.1",
@@ -35,6 +38,11 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "eslint": "^3.19.0"
   }
 }
