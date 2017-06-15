@@ -1,0 +1,16 @@
+default: &default
+  mailer:
+    url:
+      host: <%= ENV['MAILER_HOST'] %>
+  tamashii:
+    mode: token
+    token: <%= ENV['TAMASHII_TOKEN'] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
