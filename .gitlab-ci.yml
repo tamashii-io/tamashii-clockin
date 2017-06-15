@@ -54,20 +54,20 @@ rubocop:
   script:
     - rubocop
 
-eslint:
-  stage: test
-  image: "node:8.0"
-  services: []
-  before_script:
-    - npm install
-  script:
-    - npm run eslint
+# eslint:
+#   stage: test
+#   image: "node:8.0"
+#   services: []
+#   before_script:
+#     - npm install
+#   script:
+#     - npm run eslint
 
 
-scsslint:
-  stage: test
-  services: []
-  before_script:
-    - gem install scss_lint
-  script:
-    - scss-lint app/assets/stylesheets/
+# scsslint:
+#   stage: test
+#   services: []
+#   before_script:
+#     - gem install scss_lint
+#   script:
+#     - scss-lint app/assets/stylesheets/
