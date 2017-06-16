@@ -4,6 +4,7 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[5.1]
   # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/AbcSize
   def change
     create_table :users do |t|
       t.string :card_serial
