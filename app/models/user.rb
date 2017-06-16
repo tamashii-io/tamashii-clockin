@@ -10,10 +10,7 @@ class User < ApplicationRecord
 
   def checkin
     if check_records.active.empty?
-      self.check_records.create!
-      puts "Here!!!"
-    else
-      puts "Wait!!!"
+      check_records.create.set_type
     end
   end
 
