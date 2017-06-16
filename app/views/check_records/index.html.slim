@@ -1,0 +1,12 @@
+h1 打卡記錄
+table
+  thead
+    tr
+      td 姓名
+      td 狀態
+    tbody
+      - @checkrecords.each do |checkrecord|
+        tr
+          td = checkrecord.user_id
+          td = checkrecord.type
+
