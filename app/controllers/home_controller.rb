@@ -2,6 +2,6 @@
 
 class HomeController < ApplicationController
   def index
-    put 'fix rubocop'
+    puts 'fix rubocop'
   end
 end
