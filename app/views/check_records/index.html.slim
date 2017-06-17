@@ -1,4 +1,5 @@
 h1 打卡記錄
+= link_to "員工", users_admin_index_path
 table
   thead
     tr
@@ -7,6 +8,6 @@ table
     tbody
       - @checkrecords.each do |checkrecord|
         tr
-          td = checkrecord.user_id
+          td = checkrecord.user
           td = checkrecord.type
 
