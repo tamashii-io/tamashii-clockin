@@ -2,6 +2,6 @@
 
 class CheckRecordsController < ApplicationController
   def index
-    @checkrecords = CheckRecord.all
+    @checkrecords = CheckRecord.all.order(:created_at).reverse_order
   end
 end

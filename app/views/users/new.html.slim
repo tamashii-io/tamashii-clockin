@@ -1,2 +1,8 @@
-= simple_form_for @user, url: users_admin_index_path(@user), method: "post" do |f|
-  = render partial: "form", locals: { f: f }
+.container-fluid
+  .animated.fadeIn
+    .row
+      .col-lg-12
+        .card
+          .card-header = t('.title')
+          = simple_form_for @user, url: users_admin_index_path(@user), method: "post" do |f|
+            = render partial: "form", locals: { f: f }

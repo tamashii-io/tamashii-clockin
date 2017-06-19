@@ -10,7 +10,15 @@ class User < ApplicationRecord
 
   has_many :check_records
 
-  protected
+  def username
+    email.split('@').first
+  end
+
+  alias to_s username
+  def avatar(size: 80)
+    hash = Digest::MD5.hexdigest(email)
+    "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
+  end
 
   def password_required?
     return false if skip_password_validation

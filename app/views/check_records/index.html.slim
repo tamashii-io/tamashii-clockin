@@ -1,13 +1,20 @@
-h1 打卡記錄
-= link_to "員工", users_admin_index_path
-table
-  thead
-    tr
-      td 姓名
-      td 狀態
-    tbody
-      - @checkrecords.each do |checkrecord|
-        tr
-          td = checkrecord.user
-          td = checkrecord.type
+.container-fluid
+  .animated.fadeIn
+    .row
+      .col-lg-12
+        .card
+          .card-header = t('.title')
+          .card-block
+            table.table.table-bordered.table-striped.table-condensed
+              thead
+                tr
+                  td 姓名
+                  td 時間
+                  td 狀態
+              tbody
+                - @checkrecords.each do |checkrecord|
+                  tr
+                    td = checkrecord.user
+                    td = checkrecord.created_at
+                    td = checkrecord.type
 
