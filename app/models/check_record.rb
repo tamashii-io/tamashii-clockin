@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CheckRecord < ApplicationRecord
-  MAX_CHECKIN_TIME = 5.seconds
+  MAX_CHECKIN_TIME = 5.minutes
 
   belongs_to :user
   self.inheritance_column = :_type_disabled
