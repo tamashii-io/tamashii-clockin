@@ -9,24 +9,25 @@ class User < ApplicationRecord
   has_many :check_records
 
   def checkin
-    if check_records.active.empty?
-      if check_records.length == 0
-        check_records.create.set_type(0)
-      else
-        check_records.create.set_type(find_type)
-      end
+    not_active = check_records.active.empty?
+    first_records = check_records.length.zero?
+    if first_records && not_active
+      check_records.create.assign_type(0)
+    elsif not_active
+      check_records.create.assign_type(find_type)
     end
   end
 
   def find_type
-    last_record = check_records[check_records.length-2].created_at
-    if Time.at(last_record).to_date != Time.at(Time.now).to_date
-      0
-    elsif check_records[check_records.length-2].type == 0
-      1
-    else
-      0
-    end
+    index = check_records.length - 2
+    last_record = check_records[index].created_at
+    return 0 if date(last_record) != date(Time.current) || check_records[index].type.nonzero?
+    1
   end
 
+  private
+
+  def date(x)
+    Time.zone.at(x).to_date
+  end
 end

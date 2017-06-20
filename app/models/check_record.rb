@@ -8,9 +8,8 @@ class CheckRecord < ApplicationRecord
 
   scope :active, -> { where(updated_at: MAX_CHECKIN_TIME.ago..Float::INFINITY) }
 
-  def set_type x
+  def assign_type(x)
     self.type = x
     save
   end
-
 end

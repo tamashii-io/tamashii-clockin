@@ -19,24 +19,6 @@ RSpec.describe User, type: :model do
   end
 
   describe 'find_type' do
-
-    # it 'all case' do
-    #   subject.checkin
-    #   expect(subject.find_type).to eq(1)
-
-    #   Timecop.travel(5.minutes)
-    #   subject.checkin
-    #   expect(subject.find_type).to eq(1)
-
-    #   Timecop.travel(5.minutes)
-    #   subject.checkin
-    #   expect(subject.find_type).to eq(0)
-
-    #   Timecop.travel(1.days)
-    #   subject.checkin
-    #   expect(subject.find_type).to eq(0)
-    # end
-
     it 'first times' do # 0 -> 1
       subject.checkin
       expect(subject.find_type).to eq(1)
@@ -60,7 +42,7 @@ RSpec.describe User, type: :model do
 
     it 'next day' do
       subject.checkin
-      Timecop.travel(1.days)
+      Timecop.travel(1.day)
       subject.checkin
       expect(subject.find_type).to eq(0)
     end
@@ -101,14 +83,14 @@ RSpec.describe User, type: :model do
 
     it 'next day clockin' do
       subject.checkin
-      Timecop.travel(1.days)
+      Timecop.travel(1.day)
       subject.checkin
       expect(subject.check_records.last.type).to eq(0)
     end
 
     it 'next day clockout' do
       subject.checkin
-      Timecop.travel(1.days)
+      Timecop.travel(1.day)
       subject.checkin
       Timecop.travel(5.minutes)
       subject.checkin
@@ -116,18 +98,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

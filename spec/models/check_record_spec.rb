@@ -17,5 +17,4 @@ RSpec.describe CheckRecord, type: :model do
       expect(CheckRecord.active).not_to include(subject)
     end
   end
-  
 end
