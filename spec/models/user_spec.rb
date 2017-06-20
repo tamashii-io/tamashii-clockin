@@ -18,36 +18,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'find_type' do
-    it 'first times' do # 0 -> 1
-      subject.checkin
-      expect(subject.find_type).to eq(1)
-    end
-
-    it 'second times' do # 0,1 -> 1
-      subject.checkin
-      Timecop.travel(5.minutes)
-      subject.checkin
-      expect(subject.find_type).to eq(1)
-    end
-
-    it 'third times' do # 0,1,0 -> 0
-      subject.checkin
-      Timecop.travel(5.minutes)
-      subject.checkin
-      Timecop.travel(5.minutes)
-      subject.checkin
-      expect(subject.find_type).to eq(0)
-    end
-
-    it 'next day' do
-      subject.checkin
-      Timecop.travel(1.day)
-      subject.checkin
-      expect(subject.find_type).to eq(0)
-    end
-  end
-
   describe 'check_records' do
     it 'clockin_1' do
       subject.checkin
