@@ -7,4 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :check_records
+
+  def checkin
+    check_records.create! if check_records.active.empty?
+  end
 end

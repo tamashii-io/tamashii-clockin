@@ -42,6 +42,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rubocop', require: false
   gem 'scss_lint', require: false
+  gem 'timecop'
 end
 
 group :development do
