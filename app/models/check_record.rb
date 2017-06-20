@@ -12,7 +12,7 @@ class CheckRecord < ApplicationRecord
   scope :today, -> { where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day) }
 
   def assign
-    return self.type = 0 if (user.check_records.today.count % 2).zero?
-    self.type = 1
+    return self.behavior = 0 if (user.check_records.today.count % 2).zero?
+    self.behavior = 1
   end
 end

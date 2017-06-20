@@ -21,14 +21,14 @@ RSpec.describe User, type: :model do
   describe 'check_records' do
     it 'clockin_1' do
       subject.checkin
-      expect(subject.check_records.last.type).to eq(0)
+      expect(subject.check_records.last.behavior).to eq(0)
     end
 
     it 'clockout' do
       subject.checkin
       Timecop.travel(5.minutes)
       subject.checkin
-      expect(subject.check_records.last.type).to eq(1)
+      expect(subject.check_records.last.behavior).to eq(1)
     end
 
     it 'clockin_2' do
@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
       subject.checkin
       Timecop.travel(5.minutes)
       subject.checkin
-      expect(subject.check_records.last.type).to eq(0)
+      expect(subject.check_records.last.behavior).to eq(0)
     end
 
     it 'clockout_2' do
@@ -48,14 +48,14 @@ RSpec.describe User, type: :model do
       subject.checkin
       Timecop.travel(5.minutes)
       subject.checkin
-      expect(subject.check_records.last.type).to eq(1)
+      expect(subject.check_records.last.behavior).to eq(1)
     end
 
     it 'next day clockin' do
       subject.checkin
       Timecop.travel(1.day)
       subject.checkin
-      expect(subject.check_records.last.type).to eq(0)
+      expect(subject.check_records.last.behavior).to eq(0)
     end
 
     it 'next day clockout' do
@@ -64,7 +64,7 @@ RSpec.describe User, type: :model do
       subject.checkin
       Timecop.travel(5.minutes)
       subject.checkin
-      expect(subject.check_records.last.type).to eq(1)
+      expect(subject.check_records.last.behavior).to eq(1)
     end
   end
 end
