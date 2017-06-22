@@ -14,8 +14,13 @@ class User < ApplicationRecord
 
   def self.register(card_serial)
     logger.info card_serial
-    return false if User.where(card_serial: card_serial).exists?
-    # TODO: Action cable broadcast
+    user = User.find_by(card_serial: card_serial)
+    unless user.nil?
+      user.checkin
+      # TODO: Action cable broadcast new checkreocrd record
+      return false
+    end
+    # TODO: Action cable broadcast bind card_serial
     true
   end
 end
