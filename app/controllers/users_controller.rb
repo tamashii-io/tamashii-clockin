@@ -4,6 +4,11 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:edit, :update, :destroy]
   def index
     @users = User.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @users }
+    end
   end
 
   def new
