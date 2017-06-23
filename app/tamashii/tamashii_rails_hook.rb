@@ -14,7 +14,6 @@ class TamashiiRailsHook < Tamashii::Hook
   def call(packet)
     return unless @client.authorized?
     return unless interested?(packet)
-
     handle(packet)
 
     true
@@ -24,8 +23,7 @@ class TamashiiRailsHook < Tamashii::Hook
     type, data = case packet.type
                  when Tamashii::Type::RFID_NUMBER
                    packet_id, card_id = unpack(packet)
-                   logger.info card_id
-                   User.registrar_or_checkin_staff(card_id)
+                   User.registrar_or_checkin_staff(packet_id, card_id)
                  end
     response type, data unless type.nil? || data.nil?
   end

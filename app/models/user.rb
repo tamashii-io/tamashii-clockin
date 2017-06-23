@@ -25,40 +25,40 @@ class User < ApplicationRecord
     super
   end
 
-  def self.registrar_or_checkin_staff(card_serial)
-    user = User.find_by(card_serial: card_serial)
-    return registrar(card_serial) if user.nil?
-    checkin_staff(user)
+  def self.registrar_or_checkin_staff(packet_id, card_serial)
+    user = find_by(card_serial: card_serial)
+    return registrar(packet_id, card_serial) if user.nil?
+    checkin_staff(packet_id, user)
   end
 
   def checkin
     check_records.create! if check_records.active.empty?
   end
 
-  def register(card_serial)
-    return if card_serial.persent?
-    update_attributes(card_serial: card_serial)
+  def register(serial)
+    return if card_serial.present?
+    update_attributes(card_serial: serial)
   end
 
-  def registrar(card_serial)
+  def self.registrar(packet_id, card_serial)
     # TODO: Modified use channel register method to find event and register card_serial
-    user = User.find(1)
+    user = find(1)
     result = user.register(card_serial)
-    return [nil, nil] if result
+    return [nil, nil] unless result
     # TODO: Action cable broadcast bind card_serial
-    [Tamashii::Type::RFID_RESPONSE_JSON, pack(auth: true, reason: 'registrar')]
+    [Tamashii::Type::RFID_RESPONSE_JSON, pack(packet_id, auth: true, reason: 'registrar')]
   end
 
-  def checkin_staff(user)
+  def self.checkin_staff(packet_id, user)
     result = user.checkin
     return [nil, nil] unless result
     # TODO: Action cable broadcast new record
-    [Tamashii::Type::RFID_RESPONSE_JSON, pack(auth: true, reason: 'checkin')]
+    [Tamashii::Type::RFID_RESPONSE_JSON, pack(packet_id, auth: true, reason: 'checkin')]
   end
 
-  def pack(**body)
+  def self.pack(packet_id, **body)
     {
-      id: @packet_id,
+      id: packet_id,
       ev_body: body.to_json
     }.to_json
   end

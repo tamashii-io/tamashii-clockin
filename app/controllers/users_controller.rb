@@ -17,7 +17,9 @@ class UsersController < ApplicationController
     render :new
   end
 
-  def edit; end
+  def edit
+    @edit_user = params[:id]
+  end
 
   def update
     return redirect_to users_admin_index_path, notice: 'update success' if @user.update_attributes(user_params)
