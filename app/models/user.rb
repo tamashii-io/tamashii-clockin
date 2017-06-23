@@ -25,10 +25,10 @@ class User < ApplicationRecord
     super
   end
 
-  def self.registrar_or_checkin_staff(packet_id, card_serial)
+  def self.registrar_or_checkin_staff(card_serial)
     user = find_by(card_serial: card_serial)
-    return registrar(packet_id, card_serial) if user.nil?
-    checkin_staff(packet_id, user)
+    return registrar(card_serial) if user.nil?
+    checkin_staff(user)
   end
 
   def checkin
@@ -40,26 +40,19 @@ class User < ApplicationRecord
     update_attributes(card_serial: serial)
   end
 
-  def self.registrar(packet_id, card_serial)
+  def self.registrar(card_serial)
     # TODO: Modified use channel register method to find event and register card_serial
     user = find(1)
     result = user.register(card_serial)
-    return [nil, nil] unless result
+    return nil unless result
     # TODO: Action cable broadcast bind card_serial
-    [Tamashii::Type::RFID_RESPONSE_JSON, pack(packet_id, auth: true, reason: 'registrar')]
+    { auth: true, reason: 'registrar' }
   end
 
-  def self.checkin_staff(packet_id, user)
+  def self.checkin_staff(user)
     result = user.checkin
-    return [nil, nil] unless result
+    return nil unless result
     # TODO: Action cable broadcast new record
-    [Tamashii::Type::RFID_RESPONSE_JSON, pack(packet_id, auth: true, reason: 'checkin')]
-  end
-
-  def self.pack(packet_id, **body)
-    {
-      id: packet_id,
-      ev_body: body.to_json
-    }.to_json
+    { auth: true, reason: 'checkin' }
   end
 end
