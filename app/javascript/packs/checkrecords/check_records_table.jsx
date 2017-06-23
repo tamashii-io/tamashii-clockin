@@ -21,9 +21,9 @@ class CheckRecordsTable extends React.Component {
 
   componentWillMount() {
     console.log("componentWillMount")
-    console.log(this.props.eventaaId)
-    fetchCheckRecords(this.props.eventaaId);
-    CheckrecordsChannel.follow({ event_idaaa: this.props.eventaaId });
+    // console.log(this.props.eventaaId)
+    fetchCheckRecords();
+    // CheckrecordsChannel.follow({ event_idaaa: this.props.eventaaId });
   }
 
   componentDidMount() {
@@ -58,9 +58,8 @@ class CheckRecordsTable extends React.Component {
           <thead>
             <tr>
               <th>會眾</th>
-              <th>打卡點</th>
-              <th>次數</th>
               <th>時間</th>
+              <th>狀態</th>
             </tr>
           </thead>
           <tbody>
@@ -71,9 +70,5 @@ class CheckRecordsTable extends React.Component {
     );
   }
 }
-
-CheckRecordsTable.propTypes = {
-  eventId: PropTypes.string.isRequired,
-};
 
 export default CheckRecordsTable;

@@ -6,10 +6,9 @@ const formatLastActive = date => (date ? moment(date).calendar() : '');
 
 const CheckRecordsTableItem = ({ checkRecord }) => (
   <tr>
-    <td>{checkRecord.attendee.name} </td>
-    <td>{checkRecord.check_point.name}</td>
-    <td>{checkRecord.times}</td>
-    <td>{formatLastActive(checkRecord.updated_at)}</td>
+    <td>{checkRecord.user_id} </td>
+    <td>{formatLastActive(checkRecord.created_at)}</td>
+    <td>{checkRecord.behavior}</td>
   </tr>
 );
 

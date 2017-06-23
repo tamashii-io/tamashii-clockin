@@ -5,12 +5,12 @@ import {
 import store from './store';
 
 const ENDPOINTS = {
-  check_records: eventId => `/events/${eventId}/check_records.json`,
+  check_records: () => `/check_records.json`,
 };
 
-export const fetchCheckRecords = (eventId) => {
+export const fetchCheckRecords = () => {
 	console.log("action.js: fetchCheckRecords")
-  $.get(ENDPOINTS.check_records(eventId))
+  $.get(ENDPOINTS.check_records())
    .promise()
    .done((data) => { store.dispatch({ type: RECEIVE_CHECK_RECORDS, check_records: data }); });
 };

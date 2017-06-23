@@ -10,13 +10,11 @@ import { CheckrecordsChannel } from '../channels';
 
 const CheckRecord = Record({
   id: 0,
-  attendee_id: '',
-  check_point_id: '',
-  times: '',
+  user_id: '',
+  behavior: '',
   created_at: '',
   updated_at: '',
-  attendee: '',
-  check_point: '',
+  user: '',
 });
 
 const checkRecordsToRecord = checkRecords => checkRecords.map(
@@ -28,9 +26,7 @@ class CheckRecordStore extends EventEmitter {
   constructor() {
     super();
     this.check_records = fromJS([]);
-    console.log("BBVV________BBBB")
-    // console.log(actionaa)
-    CheckrecordsChannel.onReceived(actionaa => this.dispatch(actionaa));
+    CheckrecordsChannel.onReceived(action => this.dispatch(action));
   }
 
   update(checkRecordId, newCheckRecord) {
@@ -55,7 +51,6 @@ class CheckRecordStore extends EventEmitter {
         const checkRecord = new CheckRecord(action.check_record);
         this.update(checkRecord.id, checkRecord);
         this.emit(action.type, this.check_records);
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAA")
         break;
       }
       case CHECK_RECORD_SET: {
