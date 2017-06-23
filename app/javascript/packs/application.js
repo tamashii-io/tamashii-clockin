@@ -6,3 +6,24 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
+
+import Mounter from './helpers/mounter.jsx';
+import EventDashboard from './events/dashboard.jsx';
+import MachinesTable from './machines/machines_table.jsx';
+import AttendeesTable from './attendees/attendees_table.jsx';
+import CheckrecordsTable from './checkrecords/check_records_table.jsx';
+
+const modules = [
+  new Mounter('#machines', MachinesTable),
+  new Mounter('#event', EventDashboard),
+  new Mounter('#attendees', AttendeesTable),
+  new Mounter('#checkrecords', CheckrecordsTable),
+];
+
+document.addEventListener('turbolinks:before-cache', () => {
+  modules.forEach(module => module.unmount());
+});
+
+document.addEventListener('turbolinks:load', () => {
+  modules.forEach(module => module.mount());
+});
