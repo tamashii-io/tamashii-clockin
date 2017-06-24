@@ -23,7 +23,7 @@ class CheckRecordsTable extends React.Component {
     console.log("componentWillMount")
     // console.log(this.props.eventaaId)
     fetchCheckRecords();
-    // CheckrecordsChannel.follow({ event_idaaa: this.props.eventaaId });
+    CheckrecordsChannel.follow();
   }
 
   componentDidMount() {

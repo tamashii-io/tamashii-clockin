@@ -15,7 +15,10 @@ class Channel extends EventEmitter {
     this.channel = Cable.subscriptions.create(channel);
     this.channel.connected = () => this.emit(EventTypes.Connected);
     this.channel.disconnected = () => this.emit(EventTypes.Disconnected);
-    this.channel.received = data => this.emit(EventTypes.Received, data);
+    this.channel.received = data => {
+      console.log("this.channel.received!!!")
+      console.log(data)
+      this.emit(EventTypes.Received, data)};
   }
 
   onReceived(callback) {
@@ -27,9 +30,9 @@ class Channel extends EventEmitter {
     this.removeAllListener(EventEmitter.Received);
   }
 
-  follow(options) {
-    console.log("follow")
-    setTimeout(() => this.channel.perform('follow', options), 1000);
+  follow() {
+    console.log("---follow")
+    setTimeout(() => this.channel.perform('follow'), 1000);
   }
 
   unfollow() {

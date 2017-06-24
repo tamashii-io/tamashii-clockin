@@ -26,7 +26,10 @@ class CheckRecordStore extends EventEmitter {
   constructor() {
     super();
     this.check_records = fromJS([]);
-    CheckrecordsChannel.onReceived(action => this.dispatch(action));
+    CheckrecordsChannel.onReceived((action) => {
+      console.log("action", action)
+      return this.dispatch(action)
+    });
   }
 
   update(checkRecordId, newCheckRecord) {
@@ -47,13 +50,8 @@ class CheckRecordStore extends EventEmitter {
         this.emit(action.type, this.check_records);
         break;
       }
-      case CHECK_RECORD_UPDATE: {
-        const checkRecord = new CheckRecord(action.check_record);
-        this.update(checkRecord.id, checkRecord);
-        this.emit(action.type, this.check_records);
-        break;
-      }
       case CHECK_RECORD_SET: {
+        console.log("############CHECK_RECORD_SET")
         const checkRecord = new CheckRecord(action.check_record);
         this.check_records = this.check_records.push(checkRecord);
         this.emit(action.type, this.check_records);
