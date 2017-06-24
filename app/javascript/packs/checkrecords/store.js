@@ -3,7 +3,6 @@ import { fromJS, Record } from 'immutable';
 
 import {
   RECEIVE_CHECK_RECORDS,
-  CHECK_RECORD_UPDATE,
   CHECK_RECORD_SET,
 } from './constants';
 import { CheckrecordsChannel } from '../channels';
@@ -26,23 +25,8 @@ class CheckRecordStore extends EventEmitter {
   constructor() {
     super();
     this.check_records = fromJS([]);
-    CheckrecordsChannel.onReceived((action) => {
-      console.log("action", action)
-      return this.dispatch(action)
-    });
+    CheckrecordsChannel.onReceived(action => this.dispatch(action));
   }
-
-  update(checkRecordId, newCheckRecord) {
-    const index = this.index(checkRecordId);
-    if (index >= 0) {
-      this.check_records = this.check_records.set(index, newCheckRecord);
-    }
-  }
-
-  index(checkRecordId) {
-    return this.check_records.findIndex(checkRecord => checkRecord.id === checkRecordId);
-  }
-
   dispatch(action) {
     switch (action.type) {
       case RECEIVE_CHECK_RECORDS: {
@@ -51,7 +35,6 @@ class CheckRecordStore extends EventEmitter {
         break;
       }
       case CHECK_RECORD_SET: {
-        console.log("############CHECK_RECORD_SET")
         const checkRecord = new CheckRecord(action.check_record);
         this.check_records = this.check_records.push(checkRecord);
         this.emit(action.type, this.check_records);
@@ -65,7 +48,6 @@ class CheckRecordStore extends EventEmitter {
 
   off() {
     this.removeAllListeners(RECEIVE_CHECK_RECORDS);
-    this.removeAllListeners(CHECK_RECORD_UPDATE);
     this.removeAllListeners(CHECK_RECORD_SET);
   }
 }

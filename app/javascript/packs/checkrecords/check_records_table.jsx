@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   RECEIVE_CHECK_RECORDS,
-  CHECK_RECORD_UPDATE,
   CHECK_RECORD_SET,
 } from './constants';
 import { fetchCheckRecords } from './actions';
@@ -20,23 +19,13 @@ class CheckRecordsTable extends React.Component {
   }
 
   componentWillMount() {
-    console.log("componentWillMount")
-    // console.log(this.props.eventaaId)
     fetchCheckRecords();
     CheckrecordsChannel.follow();
   }
 
   componentDidMount() {
-    console.log("componentDidMount")
     store.on(RECEIVE_CHECK_RECORDS, checkRecords => this.setState({ checkRecords }));
-    store.on(
-      CHECK_RECORD_UPDATE,
-      checkRecords => this.setState({ checkRecords }),
-    );
-    store.on(
-      CHECK_RECORD_SET,
-      checkRecords => this.setState({ checkRecords }),
-    );
+    store.on(CHECK_RECORD_SET, checkRecords => this.setState({ checkRecords }));
   }
 
   componentWillUnmount() {

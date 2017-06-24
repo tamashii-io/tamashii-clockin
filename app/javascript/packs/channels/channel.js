@@ -10,19 +10,14 @@ export const EventTypes = {
 
 class Channel extends EventEmitter {
   constructor(channel) {
-    console.log("______constructor")
     super();
     this.channel = Cable.subscriptions.create(channel);
     this.channel.connected = () => this.emit(EventTypes.Connected);
     this.channel.disconnected = () => this.emit(EventTypes.Disconnected);
-    this.channel.received = data => {
-      console.log("this.channel.received!!!")
-      console.log(data)
-      this.emit(EventTypes.Received, data)};
+    this.channel.received = data => this.emit(EventTypes.Received, data);
   }
 
   onReceived(callback) {
-    console.log("______onReceived")
     this.on(EventTypes.Received, callback);
   }
 
@@ -31,7 +26,6 @@ class Channel extends EventEmitter {
   }
 
   follow() {
-    console.log("---follow")
     setTimeout(() => this.channel.perform('follow'), 1000);
   }
 

@@ -9,7 +9,6 @@ const ENDPOINTS = {
 };
 
 export const fetchCheckRecords = () => {
-	console.log("action.js: fetchCheckRecords")
   $.get(ENDPOINTS.check_records())
    .promise()
    .done((data) => { store.dispatch({ type: RECEIVE_CHECK_RECORDS, check_records: data }); });
