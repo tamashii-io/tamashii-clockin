@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class CheckRecord < ApplicationRecord
-  MAX_CHECKIN_TIME = 1.seconds
+  MAX_CHECKIN_TIME = 1.second
   default_scope { order(created_at: :desc) }
 
   belongs_to :user
   before_save :assign
   after_save do
-  CheckrecordsChannel.set(self)
+    CheckrecordsChannel.set(self)
   end
 
   scope :active, -> { where(updated_at: MAX_CHECKIN_TIME.ago..Float::INFINITY) }
@@ -25,6 +25,4 @@ class CheckRecord < ApplicationRecord
     return self.behavior = 0 if (user.check_records.today.count % 2).zero?
     self.behavior = 1
   end
-
-
 end
