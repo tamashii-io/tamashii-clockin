@@ -2,6 +2,7 @@
 
 class CheckRecordsController < ApplicationController
   def index
+    # @checkrecord = CheckRecord.last
     @checkrecords = CheckRecord.all
 
     respond_to do |format|

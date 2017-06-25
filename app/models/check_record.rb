@@ -7,7 +7,7 @@ class CheckRecord < ApplicationRecord
   belongs_to :user
   before_save :assign
   after_save do
-      CheckrecordsChannel.set(self)
+  CheckrecordsChannel.set(self)
   end
 
   scope :active, -> { where(updated_at: MAX_CHECKIN_TIME.ago..Float::INFINITY) }
