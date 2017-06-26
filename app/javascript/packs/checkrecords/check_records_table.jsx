@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   RECEIVE_CHECK_RECORDS,
   CHECK_RECORD_SET,
@@ -8,7 +7,7 @@ import { fetchCheckRecords } from './actions';
 import { CheckrecordsChannel } from '../channels';
 import store from './store';
 
-import CheckRecordsTableItem from './check_records_table_item.jsx';
+import CheckRecordsTableItem from './check_records_table_item';
 
 class CheckRecordsTable extends React.Component {
   constructor() {
