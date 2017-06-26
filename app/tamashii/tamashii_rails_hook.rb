@@ -23,9 +23,8 @@ class TamashiiRailsHook < Tamashii::Hook
     type, data = case packet.type
                  when Tamashii::Type::RFID_NUMBER
                    packet_id, card_id = unpack(packet)
-                   result = User.registrar_or_checkin_staff(card_id)
-                   return [nil, result] if result.nil?
-                   [Tamashii::Type::RFID_RESPONSE_JSON, pack(packet_id, result)]
+                   User.registrar_or_checkin_staff(card_id, packet_id)
+                   return [nil, nil]
                  end
     response type, data unless type.nil? || data.nil?
   end
@@ -45,6 +44,12 @@ class TamashiiRailsHook < Tamashii::Hook
   def unpack(packet)
     json = JSON.parse(packet.body)
     [json['id'], json['ev_body']]
+  end
+
+  def machine_write(packet_id, **result)
+    byebug
+    type, data = [Tamashii::Type::RFID_RESPONSE_JSON, pack(packet_id, result)]
+    response type, data unless type.nil? || data.nil?
   end
 
   private

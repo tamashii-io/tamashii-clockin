@@ -9,6 +9,7 @@ class User < ApplicationRecord
   attr_accessor :skip_password_validation
 
   has_many :check_records
+  after_save -> { RegistrarChannel.update(self) }
 
   def username
     email.split('@').first
@@ -25,10 +26,10 @@ class User < ApplicationRecord
     super
   end
 
-  def self.registrar_or_checkin_staff(card_serial)
+  def self.registrar_or_checkin_staff(card_serial, packet_id)
     user = find_by(card_serial: card_serial)
-    return registrar(card_serial) if user.nil?
-    checkin_staff(user)
+    return registrar(card_serial, packet_id) if user.nil?
+    checkin_staff(user, packet_id)
   end
 
   def checkin
@@ -40,13 +41,8 @@ class User < ApplicationRecord
     update_attributes(card_serial: serial)
   end
 
-  def self.registrar(card_serial)
-    # TODO: Modified use channel register method to find event and register card_serial
-    user = find(1)
-    result = user.register(card_serial)
-    return nil unless result
-    # TODO: Action cable broadcast bind card_serial
-    { auth: true, reason: 'registrar' }
+  def self.registrar(card_serial, packet_id)
+    RegistrarChannel.register('registrar_channel', card_serial, packet_id)
   end
 
   def self.checkin_staff(user)

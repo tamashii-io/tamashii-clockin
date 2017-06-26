@@ -29,6 +29,7 @@ class AttendeesTable extends React.Component {
 
   componentWillMount() {
     fetchAttendees();
+    RegistrarChannel.follow();
   }
 
   componentDidMount() {
