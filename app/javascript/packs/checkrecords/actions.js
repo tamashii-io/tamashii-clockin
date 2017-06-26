@@ -1,3 +1,5 @@
+/* global $:true */
+
 import {
   RECEIVE_CHECK_RECORDS,
 } from './constants';
