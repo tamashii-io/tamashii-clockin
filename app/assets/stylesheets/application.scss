@@ -1,2 +1,12 @@
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
+@import 'font-awesome';
+@import 'simple-line-icons';
+@import 'coreui-react/assets/css/style';
+
+// TODO: Add logo
+header {
+  &.navbar {
+    .navbar-brand {
+      background-image: image-url('logo.png');
+    }
+  }
+}
