@@ -5,7 +5,7 @@ import {
 import store from './store';
 
 const ENDPOINTS = {
-  check_records: () => `/check_records.json`,
+  check_records: () => '/check_records.json',
 };
 
 export const fetchCheckRecords = () => {

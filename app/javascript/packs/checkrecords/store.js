@@ -5,7 +5,7 @@ import {
   RECEIVE_CHECK_RECORDS,
   CHECK_RECORD_SET,
 } from './constants';
-import { CheckrecordsChannel } from '../channels';
+import CheckrecordsChannel from '../channels';
 
 const CheckRecord = Record({
   id: 0,

@@ -1,5 +1,5 @@
 import Channel from './channel';
 
 // Channels
-export const CheckrecordsChannel = new Channel('CheckrecordsChannel');
-
+const CheckrecordsChannel = new Channel('CheckrecordsChannel');
+export { CheckrecordsChannel as default };

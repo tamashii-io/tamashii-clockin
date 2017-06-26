@@ -34,7 +34,6 @@ class Channel extends EventEmitter {
   }
 
   perform(...args) {
-    console.log("perform")
     this.channel.perform(...args);
   }
 }
