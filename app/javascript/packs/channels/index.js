@@ -1,4 +1,6 @@
 import Channel from './channel';
 
 // Channels
-export const RegistrarChannel = new Channel('RegistrarChannel');
+const RegistrarChannel = new Channel('RegistrarChannel');
+
+export { RegistrarChannel as default };

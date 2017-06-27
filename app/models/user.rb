@@ -26,10 +26,10 @@ class User < ApplicationRecord
     super
   end
 
-  def self.registrar_or_checkin_staff(card_serial, packet_id)
+  def self.registrar_or_checkin_staff(machine_serial, card_serial, packet_id)
     user = find_by(card_serial: card_serial)
-    return registrar(card_serial, packet_id) if user.nil?
-    checkin_staff(user, packet_id)
+    return registrar(machine_serial, card_serial, packet_id) if user.nil?
+    checkin_staff(user)
   end
 
   def checkin
@@ -41,8 +41,9 @@ class User < ApplicationRecord
     update_attributes(card_serial: serial)
   end
 
-  def self.registrar(card_serial, packet_id)
-    RegistrarChannel.register('registrar_channel', card_serial, packet_id)
+  def self.registrar(machine_serial, card_serial, packet_id)
+    RegistrarChannel.register('registrar_channel', machine_serial, card_serial, packet_id)
+    nil
   end
 
   def self.checkin_staff(user)

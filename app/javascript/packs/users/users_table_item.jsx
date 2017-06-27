@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import { startRegister } from './actions';
 
-class AttendeesTableItem extends React.Component {
-  registerAttendee() {
-    const attendee = this.props.attendee;
-    startRegister(attendee.id);
+class UsersTableItem extends React.Component {
+  registerUser() {
+    const user = this.props.user;
+    startRegister(user.id);
   }
 
   renderCardSerial(value) {
@@ -16,7 +16,7 @@ class AttendeesTableItem extends React.Component {
 
     const onClick = (ev) => {
       ev.preventDefault();
-      this.registerAttendee();
+      this.registerUser();
     };
 
     return (
@@ -25,17 +25,17 @@ class AttendeesTableItem extends React.Component {
   }
 
   render() {
-    const attendee = this.props.attendee;
+    const user = this.props.user;
 
     return (
       <tr>
-        <td>{attendee.name}</td>
-        <td>{attendee.email}</td>
-        <td>{this.renderCardSerial(attendee.card_serial)}</td>
+        <td>{user.name}</td>
+        <td>{user.email}</td>
+        <td>{this.renderCardSerial(user.card_serial)}</td>
         <td>
-          <a href={attendee.links.edit} className="btn btn-primary">編輯</a>
+          <a href={user.links.edit} className="btn btn-primary">編輯</a>
           <a
-            href={attendee.links.self}
+            href={user.links.self}
             className="btn btn-danger"
             data-method="delete"
             data-confirm="Are you sure?"
@@ -46,8 +46,8 @@ class AttendeesTableItem extends React.Component {
   }
 }
 
-AttendeesTableItem.propTypes = {
-  attendee: PropTypes.shape({}).isRequired,
+UsersTableItem.propTypes = {
+  user: PropTypes.shape({}).isRequired,
 };
 
-export default AttendeesTableItem;
+export default UsersTableItem;

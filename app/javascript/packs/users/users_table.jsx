@@ -1,47 +1,46 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Modal, ModalBody } from 'reactstrap';
 
 import {
-  RECEIVE_ATTENDEES,
+  RECEIVE_USERS,
   START_REGISTER,
   CANCEL_REGISTER,
   REGISTER_SUCCESS,
   REGISTER_UPDATE,
 } from './constants';
-import { fetchAttendees } from './actions';
-import { RegistrarChannel } from '../channels';
+import { fetchUsers } from './actions';
+import RegistrarChannel from '../channels';
 import store from './store';
 
-import AttendeesTableItem from './attendees_table_item.jsx';
+import UsersTableItem from './users_table_item';
 
-class AttendeesTable extends React.Component {
+class UsersTable extends React.Component {
   constructor() {
     super();
     this.state = {
-      attendees: [],
-      nextRegisterAttendeeId: 0,
+      users: [],
+      nextRegisterUserId: 0,
     };
 
     this.closeModal = this.closeModal.bind(this);
   }
 
   componentWillMount() {
-    fetchAttendees();
+    fetchUsers();
     RegistrarChannel.follow();
   }
 
   componentDidMount() {
-    store.on(RECEIVE_ATTENDEES, attendees => this.setState({ attendees }));
-    store.on(START_REGISTER, attendeeId => this.setState({ nextRegisterAttendeeId: attendeeId }));
+    store.on(RECEIVE_USERS, users => this.setState({ users }));
+    store.on(START_REGISTER, userId => this.setState({ nextRegisterUserId: userId }));
     store.on(
       REGISTER_UPDATE,
-      (attendees, nextId) => this.setState({ attendees, nextRegisterAttendeeId: nextId }),
+      (users, nextId) => this.setState({ users, nextRegisterUserId: nextId }),
     );
     store.on(
       REGISTER_SUCCESS,
-      attendees => this.setState({ attendees, nextRegisterAttendeeId: 0 }),
+      users => this.setState({ users, nextRegisterUserId: 0 }),
     );
   }
 
@@ -50,24 +49,24 @@ class AttendeesTable extends React.Component {
     store.off();
   }
 
-  attendees() {
-    const attendees = this.state.attendees;
-    return attendees.map(attendee => <AttendeesTableItem key={attendee.id} attendee={attendee} />);
+  users() {
+    const users = this.state.users;
+    return users.map(user => <UsersTableItem key={user.id} user={user} />);
   }
 
-  hasNextAttendee() {
-    return this.state.nextRegisterAttendeeId > 0;
+  hasNextUser() {
+    return this.state.nextRegisterUserId > 0;
   }
 
   closeModal() {
-    this.setState({ nextRegisterAttendeeId: 0 });
+    this.setState({ nextRegisterUserId: 0 });
     store.dispatch({ type: CANCEL_REGISTER });
   }
 
   render() {
     return (
       <div>
-        <Modal isOpen={this.hasNextAttendee()} toggle={this.closeModal}>
+        <Modal isOpen={this.hasNextUser()} toggle={this.closeModal}>
           <ModalBody>Please scan your RFID card to check-in</ModalBody>
         </Modal>
         <table className="table table-bordered table-striped table-condensed">
@@ -80,7 +79,7 @@ class AttendeesTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            { this.attendees() }
+            { this.users() }
           </tbody>
         </table>
       </div>
@@ -89,4 +88,4 @@ class AttendeesTable extends React.Component {
 }
 
 
-export default AttendeesTable;
+export default UsersTable;

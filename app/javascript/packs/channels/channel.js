@@ -1,3 +1,4 @@
+/* global ActionCable:true */
 import { EventEmitter } from 'events';
 
 const Cable = ActionCable.createConsumer();

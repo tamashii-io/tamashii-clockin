@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class CheckRecord < ApplicationRecord
-  MAX_CHECKIN_TIME = 5.minutes
+  # TODO: modify for test
+  MAX_CHECKIN_TIME = 5.seconds
   default_scope { order(created_at: :desc) }
 
   belongs_to :user

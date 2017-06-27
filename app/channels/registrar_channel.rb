@@ -1,5 +1,7 @@
 # frozen_string_literal: true
+
 # Registrar Channel
+
 class RegistrarChannel < ApplicationCable::Channel
   EVENTS = {
     register: 'REGISTER',
@@ -8,16 +10,16 @@ class RegistrarChannel < ApplicationCable::Channel
   }.freeze
 
   class << self
-    def register(registrar, serial, packet_id)
-      broadcast_to('registrar_channel', type: EVENTS[:register], serial: serial, packet_id: packet_id)
+    def register(registrar, machine_serial, card_serial, packet_id)
+      broadcast_to(registrar, type: EVENTS[:register], machine_serial: machine_serial, card_serial: card_serial, packet_id: packet_id)
     end
 
-    def update(attendee)
-      broadcast_to('registrar_channel', type: EVENTS[:update], attendee: attendee)
+    def update(user)
+      broadcast_to('registrar_channel', type: EVENTS[:update], user: user)
     end
   end
 
-  def follow()
+  def follow
     stop_all_streams
     stream_for 'registrar_channel'
   end
@@ -26,14 +28,13 @@ class RegistrarChannel < ApplicationCable::Channel
     stop_all_streams
   end
 
-  # TODO: Improve this method AbcSize
-  # rubocop:disable Metrics/AbcSize
   def register(data)
-    user = User.find(data['attendeeId'])
+    user = User.find(data['userId'])
     packet_id = data['packet_id']
-    serial = data['serial']
-    return TamashiiRailsHook.machine_write(packet_id, { auth: false, reason: 'registrar' }) unless user.register(serial)
-    RegistrarChannel.broadcast_to('registrar_channel', type: EVENTS[:success], attendee: user)
-    TamashiiRailsHook.machine_write(packet_id, { auth: true, reason: 'registrar' })
+    card_serial = data['card_serial']
+    machine_serial = data['machine_serial']
+    return TamashiiRailsHook.response_register_status(machine_serial, packet_id, false) unless user.register(card_serial)
+    RegistrarChannel.broadcast_to('registrar_channel', type: EVENTS[:success], user: user)
+    TamashiiRailsHook.response_register_status(machine_serial, packet_id, true)
   end
 end
