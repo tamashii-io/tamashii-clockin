@@ -9,10 +9,12 @@
 /* global document:true */
 
 import Mounter from './helpers/mounter';
+import CheckrecordsTable from './checkrecords/check_records_table';
 import UsersTable from './users/users_table';
 
 
 const modules = [
+  new Mounter('#checkrecords', CheckrecordsTable),
   new Mounter('#users', UsersTable),
 ];
 
