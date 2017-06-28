@@ -4,7 +4,7 @@ import {
   CHECK_RECORD_SET,
 } from './constants';
 import { fetchCheckRecords } from './actions';
-import CheckrecordsChannel from '../channels';
+import { CheckrecordsChannel } from '../channels';
 import store from './store';
 
 import CheckRecordsTableItem from './check_records_table_item';

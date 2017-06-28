@@ -7,6 +7,7 @@ import {
 import store from './store';
 
 const ENDPOINTS = {
+  // TODO: User controller will conflict default devise User, change routes to deal with it
   users: () => '/users_admin.json',
 };
 

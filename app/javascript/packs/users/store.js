@@ -9,7 +9,7 @@ import {
   REGISTER_UPDATE,
   CANCEL_REGISTER,
 } from './constants';
-import RegistrarChannel from '../channels';
+import { RegistrarChannel } from '../channels';
 
 const User = Record({
   id: 0,

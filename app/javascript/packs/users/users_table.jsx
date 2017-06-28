@@ -10,7 +10,7 @@ import {
   REGISTER_UPDATE,
 } from './constants';
 import { fetchUsers } from './actions';
-import RegistrarChannel from '../channels';
+import { RegistrarChannel } from '../channels';
 import store from './store';
 
 import UsersTableItem from './users_table_item';
