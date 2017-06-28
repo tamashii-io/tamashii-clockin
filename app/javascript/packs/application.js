@@ -6,3 +6,19 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
+/* global document:true */
+
+import Mounter from './helpers/mounter';
+import CheckrecordsTable from './checkrecords/check_records_table';
+
+const modules = [
+  new Mounter('#checkrecords', CheckrecordsTable),
+];
+
+document.addEventListener('turbolinks:before-cache', () => {
+  modules.forEach(module => module.unmount());
+});
+
+document.addEventListener('turbolinks:load', () => {
+  modules.forEach(module => module.mount());
+});
