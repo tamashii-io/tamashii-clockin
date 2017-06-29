@@ -6,19 +6,20 @@
         .card
           .card-header = t('.title')
           .card-block
-            table.table.table-bordered.table-striped.table-condensed
-              thead
-                tr
-                  td 姓名
-                  td 卡片編號
-                  td 處理
-                tbody
-                  - @users.each do |user|
-                    tr
-                      td = user.email
-                      td = user.card_serial
-                      td
-                       = link_to "編輯", edit_users_admin_path(user), class: "btn btn-primary"
-                       = link_to "刪除", users_admin_path(user), method: "delete", date: { confirm: "確認？"}, class: "btn btn-danger"
+            #users
+              table.table.table-bordered.table-striped.table-condensed
+                thead
+                  tr
+                    td 姓名
+                    td 卡片編號
+                    td 處理
+                  tbody
+                    - @users.each do |user|
+                      tr
+                        td = user.email
+                        td = user.card_serial
+                        td
+                         = link_to "編輯", edit_users_admin_path(user), class: "btn btn-primary"
+                         = link_to "刪除", users_admin_path(user), method: "delete", date: { confirm: "確認？"}, class: "btn btn-danger"
 
 

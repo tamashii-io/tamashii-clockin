@@ -1,5 +1,4 @@
 /* global ActionCable:true */
-
 import { EventEmitter } from 'events';
 
 const Cable = ActionCable.createConsumer();
@@ -27,8 +26,8 @@ class Channel extends EventEmitter {
     this.removeAllListener(EventEmitter.Received);
   }
 
-  follow() {
-    setTimeout(() => this.channel.perform('follow'), 1000);
+  follow(options) {
+    setTimeout(() => this.channel.perform('follow', options), 1000);
   }
 
   unfollow() {
