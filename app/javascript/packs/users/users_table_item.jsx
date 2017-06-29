@@ -6,7 +6,7 @@ import { startRegister } from './actions';
 class UsersTableItem extends React.Component {
   registerUser() {
     const user = this.props.user;
-    startRegister(user.id);
+    startRegister(user.id, true);
   }
 
   renderCardSerial(value) {

@@ -56,6 +56,14 @@ class UserStore extends EventEmitter {
       case START_REGISTER: {
         this.nextRegisterUserId = action.userId;
         this.emit(action.type, this.nextRegisterUserId);
+        if (action.broadcast) {
+          RegistrarChannel.perform(
+            'start_or_cancel_register',
+            {
+              userId: this.nextRegisterUserId,
+            },
+          );
+        }
         break;
       }
       case REGISTER: {
@@ -90,6 +98,9 @@ class UserStore extends EventEmitter {
       }
       case CANCEL_REGISTER: {
         this.nextRegisterUserId = 0;
+        if (action.broadcast) {
+          RegistrarChannel.perform('start_or_cancel_register');
+        }
         break;
       }
       default: {

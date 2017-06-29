@@ -17,8 +17,8 @@ export const fetchUsers = () => {
    .done((data) => { store.dispatch({ type: RECEIVE_USERS, users: data }); });
 };
 
-export const startRegister = (userId) => {
-  store.dispatch({ type: START_REGISTER, userId });
+export const startRegister = (userId, broadcast) => {
+  store.dispatch({ type: START_REGISTER, userId, broadcast });
 };
 
 export default {

@@ -60,7 +60,7 @@ class UsersTable extends React.Component {
 
   closeModal() {
     this.setState({ nextRegisterUserId: 0 });
-    store.dispatch({ type: CANCEL_REGISTER });
+    store.dispatch({ type: CANCEL_REGISTER, broadcast: true });
   }
 
   render() {
