@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   attr_accessor :skip_password_validation
 
+  validates :card_serial, uniqueness: { allow_blank: true }
+
   has_many :check_records
   after_save -> { RegistrarChannel.update(self) }
 
@@ -49,7 +51,6 @@ class User < ApplicationRecord
   def self.checkin_staff(user)
     result = user.checkin
     return nil unless result
-    # TODO: Action cable broadcast new record
     { auth: true, reason: 'checkin' }
   end
 end
