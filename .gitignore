@@ -22,3 +22,7 @@
 
 # Dotenv
 .env
+
+database.*.yml
+secrets.*.yml
+settings.*.yml
