@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  devise_scope :user do
+    get '/users/sign_up', to: 'check_records#index'
+  end
+
   devise_for :users
 
   root 'check_records#index'
