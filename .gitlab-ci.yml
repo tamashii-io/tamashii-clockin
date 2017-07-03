@@ -17,6 +17,7 @@ variables:
 stages:
   - test
   - staging
+  - production
 
 # cache gems in between builds
 cache:
