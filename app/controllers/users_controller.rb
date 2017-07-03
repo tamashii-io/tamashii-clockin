@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+  before_action :user_admin?, except: :index
   before_action :find_user, only: [:edit, :update, :destroy]
   def index
     @users = User.all
@@ -42,5 +43,9 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def user_admin?
+    redirect_to users_admin_index_path, notice: 'invalid user' unless current_user.admin?
   end
 end

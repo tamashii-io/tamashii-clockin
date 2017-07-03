@@ -1,4 +1,4 @@
-= link_to "新增員工", new_users_admin_path, class: "btn btn-secondary"
+= create_user_button
 .container-fluid
   .animated.fadeIn
     .row
@@ -6,7 +6,7 @@
         .card
           .card-header = t('.title')
           .card-block
-            #users
+            #users data-is-admin= "#{current_user.admin?}"
               table.table.table-bordered.table-striped.table-condensed
                 thead
                   tr
