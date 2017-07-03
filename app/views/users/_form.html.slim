@@ -2,5 +2,6 @@
     = f.input :name
     = f.input :email
     = f.input :card_serial
+    = f.input :password unless user.persisted?
 .card-footer
     = f.button :submit, class: 'btn btn-primary'

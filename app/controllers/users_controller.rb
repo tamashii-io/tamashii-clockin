@@ -18,7 +18,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.skip_password_validation = true
     return redirect_to users_admin_index_path, notice: 'create success' if @user.save
     render :new
   end
@@ -26,7 +25,7 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    return redirect_to users_admin_index_path, notice: 'update success' if @user.update_attributes(user_params)
+    return redirect_to users_admin_index_path, notice: 'update success' if @user.update_without_password(user_params)
     render :edit
   end
 
@@ -38,7 +37,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :card_serial)
+    params.require(:user).permit(:name, :email, :card_serial, :password)
   end
 
   def find_user
