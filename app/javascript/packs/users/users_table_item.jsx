@@ -19,9 +19,29 @@ class UsersTableItem extends React.Component {
       this.registerUser();
     };
 
-    return (
-      <a href="" onClick={onClick} className="btn btn-success">報到</a>
-    );
+    if (this.props.isAdmin === 'true') {
+      return (
+        <a href="" onClick={onClick} className="btn btn-success">報到</a>
+      );
+    }
+
+    return undefined;
+  }
+
+  renderEditAndDeleteButton(links) {
+    if (this.props.isAdmin === 'true') {
+      return ([
+        <a href={links.edit} className="btn btn-primary">編輯</a>,
+        <a
+          href={links.self}
+          className="btn btn-danger"
+          data-method="delete"
+          data-confirm="Are you sure?"
+        >刪除</a>,
+      ]);
+    }
+
+    return undefined;
   }
 
   render() {
@@ -32,15 +52,7 @@ class UsersTableItem extends React.Component {
         <td>{user.name}</td>
         <td>{user.email}</td>
         <td>{this.renderCardSerial(user.card_serial)}</td>
-        <td>
-          <a href={user.links.edit} className="btn btn-primary">編輯</a>
-          <a
-            href={user.links.self}
-            className="btn btn-danger"
-            data-method="delete"
-            data-confirm="Are you sure?"
-          >刪除</a>
-        </td>
+        <td>{this.renderEditAndDeleteButton(user.links)}</td>
       </tr>
     );
   }
@@ -48,6 +60,7 @@ class UsersTableItem extends React.Component {
 
 UsersTableItem.propTypes = {
   user: PropTypes.shape({}).isRequired,
+  isAdmin: PropTypes.string.isRequired,
 };
 
 export default UsersTableItem;

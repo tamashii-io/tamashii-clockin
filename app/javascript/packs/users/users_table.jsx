@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Modal, ModalBody } from 'reactstrap';
 
@@ -51,7 +52,8 @@ class UsersTable extends React.Component {
 
   users() {
     const users = this.state.users;
-    return users.map(user => <UsersTableItem key={user.id} user={user} />);
+    const isAdmin = this.props.isAdmin;
+    return users.map(user => <UsersTableItem key={user.id} user={user} isAdmin={isAdmin} />);
   }
 
   hasNextUser() {
@@ -87,5 +89,8 @@ class UsersTable extends React.Component {
   }
 }
 
+UsersTable.propTypes = {
+  isAdmin: PropTypes.string.isRequired,
+};
 
 export default UsersTable;
