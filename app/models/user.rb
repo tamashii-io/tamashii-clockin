@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :card_serial, uniqueness: { allow_blank: true }
 
-  has_many :check_records, dependent: :destroy
+  has_many :check_records
   after_save -> { RegistrarChannel.update(self) }
 
   scope :active, -> { where(deleted: false) }
