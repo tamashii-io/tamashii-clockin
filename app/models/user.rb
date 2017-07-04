@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -11,6 +9,9 @@ class User < ApplicationRecord
   has_many :check_records
   after_save -> { RegistrarChannel.update(self) }
 
+  scope :active, -> { where(deleted: false) }
+
+  after_save :delete_check_records, if: :delete_check_records?
   enum job_type: {
     full_time: 0,
     intern: 1
@@ -50,5 +51,15 @@ class User < ApplicationRecord
     result = user.checkin
     return nil unless result
     { auth: true, reason: 'checkin' }
+  end
+
+  private
+
+  def delete_check_records?
+    deleted_changed? && deleted
+  end
+
+  def delete_check_records
+    check_records.find_each { |record| record.update(deleted: true) }
   end
 end
