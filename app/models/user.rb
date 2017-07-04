@@ -6,8 +6,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  attr_accessor :skip_password_validation
-
   validates :card_serial, uniqueness: { allow_blank: true }
 
   has_many :check_records
@@ -21,11 +19,6 @@ class User < ApplicationRecord
   def avatar(size: 80)
     hash = Digest::MD5.hexdigest(email)
     "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
-  end
-
-  def password_required?
-    return false if skip_password_validation
-    super
   end
 
   def self.registrar_or_checkin_staff(machine_serial, card_serial, packet_id)
