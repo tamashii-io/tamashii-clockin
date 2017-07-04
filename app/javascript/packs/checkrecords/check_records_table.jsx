@@ -47,6 +47,7 @@ class CheckRecordsTable extends React.Component {
             <tr>
               <th>會眾</th>
               <th>時間</th>
+              <th>類型</th>
               <th>狀態</th>
             </tr>
           </thead>

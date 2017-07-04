@@ -3,7 +3,7 @@
 class CheckRecordsController < ApplicationController
   def index
     # @checkrecord = CheckRecord.last
-    @checkrecords = CheckRecord.all
+    @checkrecords = CheckRecord.includes(:user).all
 
     respond_to do |format|
       format.html
