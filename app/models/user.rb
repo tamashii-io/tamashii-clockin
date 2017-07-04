@@ -11,6 +11,11 @@ class User < ApplicationRecord
   has_many :check_records
   after_save -> { RegistrarChannel.update(self) }
 
+  enum job_type: {
+    full_time: 0,
+    intern: 1
+  }
+
   def username
     email.split('@').first
   end

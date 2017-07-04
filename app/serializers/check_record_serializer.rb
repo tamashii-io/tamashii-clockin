@@ -6,7 +6,8 @@ class CheckRecordSerializer < ActiveModel::Serializer
   attributes :id, :user_id, :behavior, :created_at, :updated_at
   attribute :user do
     {
-      name: object.user.name
+      name: object.user.name,
+      job_type: I18n.t("user.job_type.#{object.user.job_type}")
     }
   end
 end
