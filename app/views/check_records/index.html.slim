@@ -5,17 +5,19 @@
         .card
           .card-header = t('.title')
           .card-block
-            #checkrecords 
+            #checkrecords
               table.table.table-bordered.table-striped.table-condensed
                 thead
                   tr
                     td 姓名
                     td 時間
+                    th 類型
                     td 狀態
                 tbody
                   - @checkrecords.each do |checkrecord|
                     tr
                       td = checkrecord.user
                       td = checkrecord.created_at
+                      td = checkrecord.user.job_type
                       td = checkrecord.behavior
 

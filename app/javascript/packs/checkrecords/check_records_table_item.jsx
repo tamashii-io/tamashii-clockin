@@ -10,6 +10,7 @@ const CheckRecordsTableItem = ({ checkRecord }) => (
   <tr>
     <td>{checkRecord.user.name} </td>
     <td>{formatLastActive(checkRecord.created_at)}</td>
+    <td>{checkRecord.user.job_type}</td>
     <td>{formatBehavior(checkRecord.behavior)}</td>
   </tr>
 );

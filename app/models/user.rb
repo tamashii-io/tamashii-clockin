@@ -12,6 +12,10 @@ class User < ApplicationRecord
   scope :active, -> { where(deleted: false) }
 
   after_save :delete_check_records, if: :delete_check_records?
+  enum job_type: {
+    full_time: 0,
+    intern: 1
+  }
 
   def username
     email.split('@').first

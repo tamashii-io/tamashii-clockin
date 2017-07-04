@@ -8,7 +8,9 @@ class CheckrecordsChannel < ApplicationCable::Channel
 
   class << self
     def set(check_record)
-      broadcast_to('check_records_page', type: EVENTS[:set], check_record: check_record.to_json)
+      record = CheckRecordSerializer.new(check_record)
+      Rails.logger.debug record
+      broadcast_to('check_records_page', type: EVENTS[:set], check_record: record.as_json)
     end
   end
 

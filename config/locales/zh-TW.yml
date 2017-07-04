@@ -9,6 +9,10 @@ zh-TW:
   check_records:
     index:
       title: '打卡記錄'
+  user:
+    job_type:
+      full_time: 正職
+      intern: 實習
   simple_form:
     labels:
       user:
