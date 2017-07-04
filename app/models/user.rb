@@ -4,11 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
   validates :card_serial, uniqueness: { allow_blank: true }
 
-  has_many :check_records
+  has_many :check_records, dependent: :destroy
   after_save -> { RegistrarChannel.update(self) }
+
+  scope :active, -> { where(deleted: false) }
+
+  after_save :delete_check_records, if: :delete_check_records?
 
   def username
     email.split('@').first
@@ -44,5 +47,15 @@ class User < ApplicationRecord
     result = user.checkin
     return nil unless result
     { auth: true, reason: 'checkin' }
+  end
+
+  private
+
+  def delete_check_records?
+    deleted_changed? && deleted
+  end
+
+  def delete_check_records
+    check_records.find_each { |record| record.update(deleted: true) }
   end
 end
