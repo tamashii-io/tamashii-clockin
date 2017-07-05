@@ -13,12 +13,10 @@ import { RegistrarChannel } from '../channels';
 
 const User = Record({
   id: 0,
-  code: '',
-  serial: 0,
   card_serial: '',
   email: '',
   name: '',
-  phone: '',
+  job_type: '',
   links: {
     edit: '',
     self: '',

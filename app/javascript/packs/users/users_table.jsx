@@ -76,6 +76,7 @@ class UsersTable extends React.Component {
             <tr>
               <th>姓名</th>
               <th>信箱</th>
+              <th>類型</th>
               <th>卡片序號</th>
               <th>處理</th>
             </tr>
