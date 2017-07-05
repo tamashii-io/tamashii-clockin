@@ -11,5 +11,6 @@ html
   body.app.header-fixed.sidebar-hidden.aside-menu-fixed.aside-menu-hidden
     = render "shared/header"
     .app-body
-      main.container
+      main.main
+        = render "shared/breadcrumb"
         = yield

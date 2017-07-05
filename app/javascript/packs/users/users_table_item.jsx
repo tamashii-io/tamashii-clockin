@@ -21,7 +21,7 @@ class UsersTableItem extends React.Component {
 
     if (this.props.isAdmin === 'true') {
       return (
-        <a href="" onClick={onClick} className="btn btn-success">報到</a>
+        <a href="" onClick={onClick} className="btn btn-success">綁定</a>
       );
     }
 

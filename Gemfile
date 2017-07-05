@@ -23,6 +23,7 @@ gem 'font-awesome-rails'
 gem 'simple-line-icons-rails', '~> 0.1.2'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'simple_form'
+gem 'gretel'
 
 gem 'devise'
 gem 'pundit'

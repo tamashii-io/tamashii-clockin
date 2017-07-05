@@ -1,0 +1,20 @@
+.col-md-8.mx-auto.pull-xs-none.vamiddle.animated.fadeIn
+  = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .card-group style="justify-content:center"
+      .card.p-2 style="max-width:56%"
+        .card-block
+          h1 Login
+          p.text-muted Sign In to your account
+          .input-group.mb-1
+            span.input-group-addon
+              i.icon-user
+            = f.input_field :email, label: false, class: 'form-control', required: false, autofocus: true, placeholder: 'Username'
+          .input-group.mb-2
+            span.input-group-addon
+              i.icon-lock
+            = f.input_field :password, label: false, class: 'form-control', required: false, placeholder: 'Password'
+          .row
+            .col-6
+              = f.button :submit, "Login", class: 'btn btn-primary px-4'
+            .col-6.text-right
+              = link_to "Forgot password?", new_password_path(resource_name), class: 'btn btn-link px-0'
