@@ -51,6 +51,7 @@ class UsersTableItem extends React.Component {
       <tr>
         <td>{user.name}</td>
         <td>{user.email}</td>
+        <td>{user.job_type}</td>
         <td>{this.renderCardSerial(user.card_serial)}</td>
         <td>{this.renderEditAndDeleteButton(user.links)}</td>
       </tr>
