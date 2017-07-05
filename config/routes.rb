@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/sign_up', to: 'check_records#index'
   end
-
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
 
   root 'check_records#index'
   resources :users_admin, controller: 'users'
