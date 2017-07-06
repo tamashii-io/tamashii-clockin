@@ -11,27 +11,27 @@ class SlackService
 
   # TODO: Refactor below method
   # rubocop:disable Metrics/MethodLength
-  def notify(subject, content, status)
+  def notify(subject, status, content)
     post(
-      messages_uri(),
-      "text": subject,
-      "attachments": [
+      messages_uri,
+      'text': subject,
+      'attachments': [
         {
-          "title": status,
-          "fields": [
+          'title': status,
+          'fields': [
             {
-              "title": "已打卡人數",
-              "value": "1",
-              "short": true
+              'title': '已打卡人數',
+              'value': content[:clockin],
+              'short': true
             },
             {
-              "title": "未打卡人數",
-              "value": "3",
-              "short": true
+              'title': '未打卡人數',
+              'value': content[:not_clockin],
+              'short': true
             }
           ],
-          "author_name": content,
-          "author_icon": "http://a.slack-edge.com/7f18/img/api/homepage_custom_integrations-2x.png"
+          'author_name': 'chockin',
+          'author_icon': 'http://a.slack-edge.com/7f18/img/api/homepage_custom_integrations-2x.png'
         }
       ]
     )
@@ -39,7 +39,7 @@ class SlackService
 
   protected
 
-  def messages_uri()
+  def messages_uri
     URI(ENDPOINT + '/' + @token)
   end
 
