@@ -53,7 +53,7 @@ namespace :notification do
       slack.notify(
         NOTIFY_SUBJECT,
         '下班',
-        '下班時間快到了，下班也要打卡喔！',
+        '下班時間快到了，下班也要打卡喔！'
       )
     end
   end
