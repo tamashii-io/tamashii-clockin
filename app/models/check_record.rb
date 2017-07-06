@@ -29,7 +29,7 @@ class CheckRecord < ApplicationRecord
   private
 
   def assign
-    return self.behavior = 0 if (user.check_records.today.count % 2).zero?
-    self.behavior = 1
+    return self.behavior = :clockin if (user.check_records.today.count % 2).zero?
+    self.behavior = :clockout
   end
 end
