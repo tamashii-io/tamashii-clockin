@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 namespace :notification do
+  task clockin: ['flowdock:clockin', 'slack:clockin']
+  task clockout: ['flowdock:clockout', 'slack:clockout']
+
   namespace :flowdock do
     NOTIFY_SUBJECT = 'Tamashii 打卡貼心提示'
 
@@ -49,8 +52,8 @@ namespace :notification do
       slack = FlowdockService.new(Settings.slack.token)
       slack.notify(
         NOTIFY_SUBJECT,
+        '下班',
         '下班時間快到了，下班也要打卡喔！',
-        '下班'
       )
     end
   end
