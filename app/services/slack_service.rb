@@ -18,20 +18,9 @@ class SlackService
       'attachments': [
         {
           'title': status,
-          'fields': [
-            {
-              'title': '已打卡人數',
-              'value': content[:clockin],
-              'short': true
-            },
-            {
-              'title': '未打卡人數',
-              'value': content[:not_clockin],
-              'short': true
-            }
-          ],
-          'author_name': 'chockin',
-          'author_icon': 'http://a.slack-edge.com/7f18/img/api/homepage_custom_integrations-2x.png'
+          'fields': content,
+          'author_name': 'Tamashii-chockin',
+          'author_icon': 'https://cdn0.iconfinder.com/data/icons/long-shadow-web-icons/512/ruby-512.png'
         }
       ]
     )

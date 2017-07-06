@@ -42,18 +42,28 @@ namespace :notification do
       not_clockin_count = User.count - counts
       slack.notify(
         NOTIFY_SUBJECT,
-        '上班',
-        clockin: counts,
-        not_clockin: not_clockin_count
+        '上班打卡狀況',
+        [
+          {
+            'title': '已打卡人數',
+            'value': counts,
+            'short': true
+          },
+          {
+            'title': '未打卡人數',
+            'value': not_clockin_count,
+            'short': true
+          }
+        ]
       )
     end
 
     task clockout: :environment do
-      slack = FlowdockService.new(Settings.slack.token)
+      slack = SlackService.new(Settings.slack.token)
       slack.notify(
         NOTIFY_SUBJECT,
-        '下班',
-        '下班時間快到了，下班也要打卡喔！'
+        '下班時間快到了，下班也要打卡喔！',
+        []
       )
     end
   end
