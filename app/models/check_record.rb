@@ -11,6 +11,11 @@ class CheckRecord < ApplicationRecord
     CheckrecordsChannel.set(self)
   end
 
+  enum behavior: {
+    clockin: 0,
+    clockout: 1
+  }
+
   scope :active, -> { where(updated_at: MAX_CHECKIN_TIME.ago..Float::INFINITY) }
   scope :today, -> { where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day) }
   scope :active_records, -> { where(deleted: false) }
