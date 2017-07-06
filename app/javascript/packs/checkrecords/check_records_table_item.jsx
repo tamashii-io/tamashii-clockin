@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 const formatLastActive = date => (date ? moment(date).calendar() : '');
-const formatBehavior = behavior => (behavior ? '下班' : '上班');
+const formatBehavior = behavior => (behavior === 'checkout' ? '下班' : '上班');
 
 
 const CheckRecordsTableItem = ({ checkRecord }) => (
