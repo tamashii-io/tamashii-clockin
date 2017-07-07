@@ -20,6 +20,14 @@ class CheckRecord < ApplicationRecord
   scope :today, -> { where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day) }
   scope :active_records, -> { where(deleted: false) }
 
+  def self.daily_activity
+    unscope(:order).group_by_hour_of_day(:created_at).count
+  end
+
+  def self.monthly_activity
+    unscope(:order).group_by_day_of_month(:created_at).count
+  end
+
   def to_json
     rtn = as_json
     rtn['user'] = user

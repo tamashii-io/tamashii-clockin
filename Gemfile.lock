@@ -114,6 +114,8 @@ GEM
       activesupport (>= 4.2.0)
     gretel (3.0.9)
       rails (>= 3.1.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     hirb (0.7.3)
     i18n (0.8.4)
     jbuilder (2.7.0)
@@ -359,6 +361,7 @@ DEPENDENCIES
   faker
   font-awesome-rails
   gretel
+  groupdate
   hirb
   jbuilder (~> 2.5)
   jquery-rails
