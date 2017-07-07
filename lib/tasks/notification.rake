@@ -9,8 +9,7 @@ namespace :notification do
 
     task clockin: :environment do
       flowdock = FlowdockService.new(Settings.flowdock.token)
-      counts = CheckRecord.today.clockin.distinct(:user_id).count
-      not_clockin_count = User.count - counts
+      counts, not_clockin_count = clockin_status
       current_time = I18n.l(Time.zone.now, format: :long)
       flowdock.notify(
         Settings.flowdock.channel,
@@ -38,8 +37,7 @@ namespace :notification do
 
     task clockin: :environment do
       slack = SlackService.new(Settings.slack.token)
-      counts = CheckRecord.today.clockin.distinct(:user_id).count
-      not_clockin_count = User.count - counts
+      counts, not_clockin_count = clockin_status
       slack.notify(
         NOTIFY_SUBJECT,
         '上班打卡狀況',
@@ -66,5 +64,11 @@ namespace :notification do
         []
       )
     end
+  end
+
+  def clockin_status
+    counts = CheckRecord.today.clockin.distinct(:user_id).count
+    not_clockin_count = User.count - counts
+    [counts, not_clockin_count]
   end
 end
