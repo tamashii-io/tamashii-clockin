@@ -11,3 +11,7 @@ end
 crumb :users do
   link 'Users', users_admin_index_path
 end
+
+crumb :user do |user|
+  link user.name
+end

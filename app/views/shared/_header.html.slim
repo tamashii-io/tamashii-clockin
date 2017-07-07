@@ -7,7 +7,7 @@ header.app-header.navbar
     / TODO: Write helper to do this
     - if user_signed_in?
       / TODO: Convert to use dropdown with avatar
-      li.nav-item.dropdown.px-4
+      li.nav-item.dropdown.px-2
         a.nav-link.dropdown-toggle data-toggle="dropdown" href="#"
           = image_tag current_user.avatar, class: 'img-avatar'
           span = current_user.username
