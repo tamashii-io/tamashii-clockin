@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 namespace :notification do
+  NOTIFY_SUBJECT = 'Tamashii 打卡貼心提示'
   task clockin: ['flowdock:clockin', 'slack:clockin']
   task clockout: ['flowdock:clockout', 'slack:clockout']
 
   namespace :flowdock do
-    NOTIFY_SUBJECT = 'Tamashii 打卡貼心提示'
-
     task clockin: :environment do
       flowdock = FlowdockService.new(Settings.flowdock.token)
       counts, not_clockin_count = clockin_status
@@ -33,8 +32,6 @@ namespace :notification do
   end
 
   namespace :slack do
-    NOTIFY_SUBJECT = 'Tamashii 打卡貼心提示'
-
     task clockin: :environment do
       slack = SlackService.new(Settings.slack.token)
       counts, not_clockin_count = clockin_status
