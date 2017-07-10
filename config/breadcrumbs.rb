@@ -4,6 +4,10 @@ crumb :root do
   link 'Home', root_path
 end
 
+crumb :dashboard do
+  link 'Dashboard', root_path
+end
+
 crumb :check_records do
   link 'Check Records', check_records_path
 end

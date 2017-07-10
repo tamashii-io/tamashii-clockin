@@ -8,6 +8,9 @@
 // layout file, like app/views/layouts/application.html.erb
 /* global document:true */
 
+// NOTE: Add chart.js
+import 'coreui-react';
+
 import Mounter from './helpers/mounter';
 import CheckrecordsTable from './checkrecords/check_records_table';
 import UsersTable from './users/users_table';

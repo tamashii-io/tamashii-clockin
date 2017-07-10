@@ -1,0 +1,60 @@
+- breadcrumb :dashboard
+.container-fluid
+  .animated.fadeIn
+    .card
+      .card-block
+        .row
+          .col-sm-12
+            h4.card-title Daily Activity
+            .small.text-muted(style="margin-top: 10px") = l Time.zone.today, format: :long
+        .chart-wrapper(style="margin-top: 40px; height: 300px")
+          canvas#daily-activity height=300
+    .card
+      .card-block
+        .row
+          .col-sm-12
+            h4.card-title Monthly Activity
+            .small.text-muted(style="margin-top: 10px") = l Time.zone.today, format: :abbr_month
+        .chart-wrapper(style="margin-top: 40px; height: 300px")
+          canvas#monthly-activity height=300
+javascript:
+  var ctx = $('#daily-activity');
+    var mainChart = new Chart(ctx,{
+      type: 'line',
+        data: [#{@daily_activity.clockin.count.values.to_json}],
+        options: options
+    });
+    var labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    var options = {
+      responsive: true,
+        maintainAspectRatio: false,
+        legend: {
+          display: false,
+        },
+        scales: {
+          xAxes: [{
+            display: false,
+            }],
+            yAxes: [{
+              display: false,
+            }]
+        },
+        elements: {
+          point: {
+            radius: 0,
+              hitRadius: 10,
+                hoverRadius: 4,
+                hoverBorderWidth: 3,
+            }
+        }
+    };
+    var data1 = {
+      labels: labels,
+        datasets: [{
+          backgroundColor: 'rgba(255,255,255,.1)',
+            borderColor: 'rgba(255,255,255,.55)',
+            pointHoverBackgroundColor: '#fff',
+            borderWidth: 2,
+            data: [65, 59, 84, 84, 51, 55, 40]
+        }]
+    };
