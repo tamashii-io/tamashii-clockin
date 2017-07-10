@@ -13,6 +13,9 @@ zh-TW:
     job_type:
       full_time: 正職
       intern: 實習
+  date:
+    formats:
+      abbr_month: "%B"
   simple_form:
     labels:
       user:

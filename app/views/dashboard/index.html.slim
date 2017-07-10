@@ -1,0 +1,94 @@
+- breadcrumb :dashboard
+.container-fluid
+  .animated.fadeIn
+    .card
+      .card-block
+        .row
+          .col-sm-12
+            h4.card-title Daily Activity
+            .small.text-muted(style="margin-top: 10px") = l Time.zone.today, format: :long
+        .chart-wrapper(style="margin-top: 40px; height: 300px")
+          canvas#daily-activity height=300
+    .card
+      .card-block
+        .row
+          .col-sm-12
+            h4.card-title Monthly Activity
+            .small.text-muted(style="margin-top: 10px") = l Time.zone.today, format: :abbr_month
+        .chart-wrapper(style="margin-top: 40px; height: 300px")
+          canvas#monthly-activity height=300
+
+/ Refactor above javascript
+javascript:
+  var options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+      display: true
+    },
+    scales: {
+      xAxes: [{
+        gridLines: {
+          drawOnChartArea: false,
+        }
+      }],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          stepSize: 1
+        }
+      }]
+    },
+    elements: {
+      point: {
+        radius: 0,
+        hitRadius: 10,
+        hoverRadius: 4,
+        hoverBorderWidth: 3,
+      }
+    },
+  };
+  var daily_data = {
+    labels: #{@daily_activity.clockin.count.keys.to_json},
+    datasets: [{
+      label: '上班',
+      borderColor: $.brandSuccess,
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: #{@daily_activity.clockin.count.values.to_json}
+    }, {
+      label: '下班',
+      backgroundColor: 'transparent',
+      borderColor: $.brandDanger,
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: #{@daily_activity.clockout.count.values.to_json}
+    }]
+  };
+  var monthly_data = {
+  labels: #{@monthly_activity.clockin.count.keys.to_json},
+    datasets: [{
+      label: '上班',
+      borderColor: $.brandSuccess,
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: #{@monthly_activity.clockin.count.values.to_json}
+    }, {
+      label: '下班',
+      backgroundColor: 'transparent',
+      borderColor: $.brandDanger,
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: #{@monthly_activity.clockout.count.values.to_json}
+    }]
+  };
+  var dailyChart = new Chart($('#daily-activity'),{
+    type: 'line',
+    data: daily_data,
+    options: options
+  });
+  var monthlyChart = new Chart($('#monthly-activity'),{
+    type: 'line',
+    data: monthly_data,
+    options: options
+  });
