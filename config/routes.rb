@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   root 'check_records#index'
   resources :users_admin, controller: 'users'
   resources :check_records, only: [:index]
+  resources :machines do
+    scope module: :machines do
+      resources :actions, only: [:create]
+    end
+  end
   mount Tamashii::Manager.server => '/tamashii' unless Rails.env.test?
   mount ActionCable.server => '/cable'
 end

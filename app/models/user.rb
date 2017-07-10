@@ -7,9 +7,11 @@ class User < ApplicationRecord
   validates :card_serial, uniqueness: { allow_blank: true }
 
   has_many :check_records
+  has_many :machines
   after_save -> { RegistrarChannel.update(self) }
 
   scope :active, -> { where(deleted: false) }
+  scope :managers, -> { where(deleted: false, admin: true)}
 
   after_save :delete_check_records, if: :delete_check_records?
   enum job_type: {
