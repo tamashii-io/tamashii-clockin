@@ -3,13 +3,15 @@
 # missing top-level class documentation comment
 class CheckrecordsChannel < ApplicationCable::Channel
   EVENTS = {
-    set: 'CHECK_RECORD_SET'
+    set: 'CHECK_RECORD_SET',
+    notify: 'NOTIFY_NEW_RECORD'
   }.freeze
 
   class << self
     def set(check_record)
       record = CheckRecordSerializer.new(check_record)
       Rails.logger.debug record
+      broadcast_to('check_records_page', type: EVENTS[:notify])
       broadcast_to('check_records_page', type: EVENTS[:set], check_record: record.as_json)
     end
   end
