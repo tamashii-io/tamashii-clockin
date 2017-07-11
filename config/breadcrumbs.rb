@@ -16,6 +16,15 @@ crumb :users do
   link 'Users', users_admin_index_path
 end
 
+crumb :machines do
+  link 'Machines', machines_path
+end
+
+crumb :machine do |machine|
+  link machine.name || 'New', machine
+  parent :machines
+end
+
 crumb :user do |user|
   link user.name
 end
