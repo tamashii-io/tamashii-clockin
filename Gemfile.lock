@@ -114,6 +114,8 @@ GEM
       activesupport (>= 4.2.0)
     gretel (3.0.9)
       rails (>= 3.1.0)
+    groupdate (3.2.0)
+      activesupport (>= 3)
     hirb (0.7.3)
     i18n (0.8.4)
     jbuilder (2.7.0)
@@ -124,18 +126,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jsonapi-renderer (0.1.2)
-    kaminari (1.0.1)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.0.1)
-      kaminari-activerecord (= 1.0.1)
-      kaminari-core (= 1.0.1)
-    kaminari-actionview (1.0.1)
-      actionview
-      kaminari-core (= 1.0.1)
-    kaminari-activerecord (1.0.1)
-      activerecord
-      kaminari-core (= 1.0.1)
-    kaminari-core (1.0.1)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -202,6 +192,9 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails-i18n (5.0.4)
+      i18n (~> 0.7)
+      railties (~> 5.0)
     railties (5.1.2)
       actionpack (= 5.1.2)
       activesupport (= 5.1.2)
@@ -368,10 +361,10 @@ DEPENDENCIES
   faker
   font-awesome-rails
   gretel
+  groupdate
   hirb
   jbuilder (~> 2.5)
   jquery-rails
-  kaminari
   letter_opener
   listen (>= 3.0.5, < 3.2)
   pg (~> 0.18)
@@ -381,6 +374,7 @@ DEPENDENCIES
   pundit
   rails (~> 5.1.0)
   rails-controller-testing
+  rails-i18n
   rspec
   rspec-rails
   rubocop

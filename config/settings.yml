@@ -5,6 +5,12 @@ default: &default
   tamashii:
     mode: token
     token: <%= ENV['TAMASHII_TOKEN'] %>
+  flowdock:
+    token: <%= ENV['FLOWDOCK_TOKEN'] %>
+    channel: <%= ENV['FLOWDOCK_CHANNEL'] %>
+  slack:
+    token: <%= ENV['SLACK_TOKEN'] %>
+
 
 development:
   <<: *default
