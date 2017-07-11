@@ -7,9 +7,11 @@ class User < ApplicationRecord
   validates :card_serial, uniqueness: { allow_blank: true }
 
   has_many :check_records
+  has_many :machines
   after_save -> { RegistrarChannel.update(self) }
 
   scope :active, -> { where(deleted: false) }
+  scope :managers, -> { where(deleted: false, admin: true) }
 
   after_save :delete_check_records, if: :delete_check_records?
   enum job_type: {
@@ -29,7 +31,8 @@ class User < ApplicationRecord
 
   def self.registrar_or_checkin_staff(machine_serial, card_serial, packet_id)
     user = find_by(card_serial: card_serial)
-    return registrar(machine_serial, card_serial, packet_id) if user.nil?
+    machine ||= Machine.find_by(serial: machine_serial)
+    return registrar(machine_serial, card_serial, packet_id, machine, user) if machine.registrar?
     checkin_staff(user)
   end
 
@@ -42,12 +45,15 @@ class User < ApplicationRecord
     update_attributes(card_serial: serial)
   end
 
-  def self.registrar(machine_serial, card_serial, packet_id)
+  def self.registrar(machine_serial, card_serial, packet_id, machine, user)
+    return false unless user.nil?
+    return false if machine.registrar.blank?
     RegistrarChannel.register('registrar_channel', machine_serial, card_serial, packet_id)
     nil
   end
 
   def self.checkin_staff(user)
+    return false if user.nil?
     result = user.checkin
     return nil unless result
     { auth: true, reason: 'checkin' }

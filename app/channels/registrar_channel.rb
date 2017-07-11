@@ -23,6 +23,7 @@ class RegistrarChannel < ApplicationCable::Channel
   def follow
     stop_all_streams
     stream_for 'registrar_channel'
+    stream_for current_user
   end
 
   def unfollow

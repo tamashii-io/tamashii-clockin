@@ -24,7 +24,7 @@ gem 'simple-line-icons-rails', '~> 0.1.2'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'simple_form'
 gem 'gretel'
-gem 'kaminari'
+gem 'groupdate'
 
 gem 'devise'
 gem 'pundit'
@@ -32,6 +32,8 @@ gem 'pundit'
 gem 'settingslogic'
 gem 'tamashii-manager'
 gem 'active_model_serializers'
+
+gem 'rails-i18n'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

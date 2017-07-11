@@ -4,5 +4,11 @@
         "react",
         "jsx-a11y",
         "import"
-    ]
+    ],
+    "globals": {
+      "ActionCable": true,
+      "$": true,
+      "document": true,
+      "App": true
+    }
 }
