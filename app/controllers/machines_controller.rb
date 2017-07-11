@@ -1,6 +1,8 @@
 # frozen_string_literal: true
+
 # missing top-level class documentation comment
 class MachinesController < ApplicationController
+  before_action :user_admin?
   before_action :find_machine, only: [:edit, :update, :destroy]
 
   def index
@@ -44,5 +46,9 @@ class MachinesController < ApplicationController
 
   def find_machine
     @machine = Machine.find_by(id: params[:id])
+  end
+
+  def user_admin?
+    redirect_to root_path, notice: 'invalid user' unless current_user.admin?
   end
 end
