@@ -6,7 +6,7 @@
         .card
           .card-header = t('.title')
           .card-block
-            #checkrecords
+            #checkrecords data-page-id="#{@page}"
               table.table.table-bordered.table-striped.table-condensed
                 thead
                   tr
@@ -21,4 +21,4 @@
                       td = checkrecord.created_at
                       td = checkrecord.user.job_type
                       td = checkrecord.behavior
-
+            = paginate @checkrecords

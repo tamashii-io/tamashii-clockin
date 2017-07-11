@@ -18,7 +18,7 @@ class CheckRecordsTable extends React.Component {
   }
 
   componentWillMount() {
-    fetchCheckRecords();
+    fetchCheckRecords(this.props.pageId);
     CheckrecordsChannel.follow();
   }
 
