@@ -6,6 +6,8 @@ class Machine < ApplicationRecord
 
   belongs_to :registrar, class_name: 'User', optional: true
 
+  validates :registrar, uniqueness: true
+
   scope :recent_update, -> { where(updated_at: 5.minutes.ago..Float::INFINITY) }
 
   enum type: {
