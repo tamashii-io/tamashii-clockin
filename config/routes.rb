@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  root 'check_records#index'
+  root 'dashboard#index'
   resources :users_admin, controller: 'users'
   resources :check_records, only: [:index]
   resources :machines do
