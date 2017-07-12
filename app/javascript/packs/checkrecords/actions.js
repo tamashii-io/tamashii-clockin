@@ -7,11 +7,11 @@ import {
 import store from './store';
 
 const ENDPOINTS = {
-  check_records: () => '/check_records.json',
+  check_records: page => `/check_records.json?page=${page}`,
 };
 
-export const fetchCheckRecords = () => {
-  $.get(ENDPOINTS.check_records())
+export const fetchCheckRecords = (page) => {
+  $.get(ENDPOINTS.check_records(page))
    .promise()
    .done((data) => { store.dispatch({ type: RECEIVE_CHECK_RECORDS, check_records: data }); });
 };

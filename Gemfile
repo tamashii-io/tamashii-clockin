@@ -25,6 +25,7 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'simple_form'
 gem 'gretel'
 gem 'groupdate'
+gem 'kaminari'
 
 gem 'devise'
 gem 'pundit'

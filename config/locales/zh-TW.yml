@@ -29,4 +29,6 @@ zh-TW:
         name: '員工姓名'
         email: 'E-mail'
         card_serial: '打片序號'
-
+  views:
+    pagination:
+      truncate: "..."
