@@ -2,7 +2,7 @@
   .card-block
     = f.input :serial
     = f.input :name
-    = f.input :type, collection: Machine.types.keys
+    = f.input :type, collection: Machine.types.keys, include_blank: false, include_hidden: false
     = f.association :registrar, collection: User.managers
   .card-footer
     = f.button :submit, class: 'btn btn-primary'

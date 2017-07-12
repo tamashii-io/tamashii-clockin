@@ -14,11 +14,13 @@ import 'coreui-react';
 import Mounter from './helpers/mounter';
 import CheckrecordsTable from './checkrecords/check_records_table';
 import UsersTable from './users/users_table';
+import MachinesTable from './machines/machines_table';
 
 
 const modules = [
   new Mounter('#checkrecords', CheckrecordsTable),
   new Mounter('#users', UsersTable),
+  new Mounter('#machines', MachinesTable),
 ];
 
 document.addEventListener('turbolinks:before-cache', () => {
