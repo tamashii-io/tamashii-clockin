@@ -21,8 +21,8 @@ class CheckRecordsTable extends React.Component {
   }
 
   componentWillMount() {
-    fetchCheckRecords(this.props.pageId);
-    CheckrecordsChannel.follow({ page_id: this.props.pageId });
+    fetchCheckRecords(this.props.page);
+    CheckrecordsChannel.follow({ page: this.props.page });
   }
 
   componentDidMount() {
@@ -71,6 +71,6 @@ class CheckRecordsTable extends React.Component {
 }
 
 CheckRecordsTable.propTypes = {
-  pageId: PropTypes.string.isRequired,
+  page: PropTypes.string.isRequired,
 };
 export default CheckRecordsTable;

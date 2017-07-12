@@ -18,7 +18,7 @@ class CheckrecordsChannel < ApplicationCable::Channel
 
   def follow(data)
     stop_all_streams
-    return stream_for 'check_records_set' if page_one? data['page_id']
+    return stream_for 'check_records_set' if page_one? data['page']
     stream_for 'check_records_notify'
   end
 
