@@ -33,6 +33,7 @@ class CheckRecordStore extends EventEmitter {
     switch (action.type) {
       case RECEIVE_CHECK_RECORDS: {
         this.check_records = fromJS(checkRecordsToRecord(action.check_records));
+        this.notify_new_records = 0;
         this.emit(action.type, this.check_records);
         break;
       }

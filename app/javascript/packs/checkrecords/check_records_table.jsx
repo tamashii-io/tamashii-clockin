@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
   RECEIVE_CHECK_RECORDS,
   CHECK_RECORD_SET,
@@ -21,7 +22,7 @@ class CheckRecordsTable extends React.Component {
 
   componentWillMount() {
     fetchCheckRecords(this.props.pageId);
-    CheckrecordsChannel.follow();
+    CheckrecordsChannel.follow({ page_id: this.props.pageId });
   }
 
   componentDidMount() {
@@ -69,4 +70,7 @@ class CheckRecordsTable extends React.Component {
   }
 }
 
+CheckRecordsTable.propTypes = {
+  pageId: PropTypes.string.isRequired,
+};
 export default CheckRecordsTable;
