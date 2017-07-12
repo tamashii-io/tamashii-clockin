@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CheckRecord < ApplicationRecord
-  paginates_per 5
+  paginates_per 25
   # TODO: modify for test
   MAX_CHECKIN_TIME = 5.seconds
   default_scope { order(created_at: :desc) }
