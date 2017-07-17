@@ -1,7 +1,7 @@
 .card-block
     = f.input :name
     = f.input :email
-    = f.input :password
+    = f.input :password, hint: "leave it blank if you don't want to change it"
     / TODO: Create a helper for collection
     = f.input :job_type, collection: User.job_types.map { |type, id| [t("user.job_type.#{type}"), type] }
     = f.input :card_serial if user.card_serial.present?
