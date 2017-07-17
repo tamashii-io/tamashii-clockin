@@ -25,7 +25,7 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    return redirect_to users_admin_index_path, notice: 'update success' if @user.update_without_password(user_params)
+    return redirect_to users_admin_index_path, notice: 'update success' if @user.update(user_params)
     render :edit
   end
 
