@@ -24,12 +24,8 @@ class UsersController < ApplicationController
 
   def edit; end
 
-  def update
-    if params[:user][:password].empty?
-      @user.update_without_password(user_params)
-    else
-      @user.update(user_params)
-    end     
+  def update    
+    update_user(@user)
     return redirect_to users_admin_index_path, notice: 'update success'
     render :edit
   end
@@ -52,4 +48,10 @@ class UsersController < ApplicationController
   def user_admin?
     redirect_to users_admin_index_path, notice: 'invalid user' unless current_user.admin?
   end
+
+  def update_user(user)
+    return user.update_without_password(user_params) if user_params.fetch(:password, '').blank?
+    user.update(user_params)
+  end
+
 end

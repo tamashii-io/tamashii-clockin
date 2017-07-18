@@ -5,7 +5,7 @@ zh-TW:
     new:
       title: '新增員工'
     edit:
-      title: '編輯員工'
+      title: '編輯員工' 
   check_records:
     index:
       title: '打卡記錄'
@@ -28,7 +28,7 @@ zh-TW:
       user:
         name: '員工姓名'
         email: 'E-mail'
-        card_serial: '打片序號'
+        card_serial: '卡片序號'
   views:
     pagination:
       truncate: "..."
