@@ -13,11 +13,16 @@ class RegistrarChannel < ApplicationCable::Channel
   class << self
     def register(registrar, machine_serial, card_serial, packet_id)
       broadcast_to(registrar, type: EVENTS[:register], machine_serial: machine_serial, card_serial: card_serial, packet_id: packet_id)
+      broadcast_to('registrar_card_serial', machine_serial: machine_serial, card_serial: card_serial, packet_id: packet_id)
     end
 
     def update(user)
       broadcast_to('registrar_channel', type: EVENTS[:update], user: user)
     end
+  end
+
+  def subscribed
+    stream_for 'registrar_card_serial'
   end
 
   def follow
@@ -31,10 +36,14 @@ class RegistrarChannel < ApplicationCable::Channel
   end
 
   def register(data)
-    user = User.find(data['userId'])
     packet_id = data['packet_id']
     card_serial = data['card_serial']
     machine_serial = data['machine_serial']
+
+    return TamashiiRailsHook.response_register_status(machine_serial, packet_id, data['new_user']) if data['userId'].nil?
+
+    user = User.find(data['userId'])
+
     return TamashiiRailsHook.response_register_status(machine_serial, packet_id, false) unless user.register(card_serial)
     RegistrarChannel.broadcast_to('registrar_channel', type: EVENTS[:success], user: user)
     TamashiiRailsHook.response_register_status(machine_serial, packet_id, true)

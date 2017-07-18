@@ -6,3 +6,21 @@
           .card-header = t('.title')
           = simple_form_for @user, url: users_admin_index_path(@user), method: "post" do |f|
             = render partial: "form", locals: { f: f, user: @user}
+javascript:
+  ActionCable.createConsumer().subscriptions.create("RegistrarChannel", {
+    connected: function() {},
+    disconnected: function() {},
+    received: function(data) {
+      document.getElementById("user_card_serial").value = data.card_serial
+      this.perform(
+        'register',
+        {
+          new_user: true,
+          machine_serial: data.machine_serial,
+          card_serial: data.card_serial,
+          packet_id: data.packet_id,
+        }
+      );
+    }
+  });
+
