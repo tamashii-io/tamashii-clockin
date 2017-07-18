@@ -24,9 +24,8 @@ class UsersController < ApplicationController
 
   def edit; end
 
-  def update    
-    update_user(@user)
-    return redirect_to users_admin_index_path, notice: 'update success'
+  def update
+    return redirect_to users_admin_index_path, notice: 'update success' if update_user(@user)
     render :edit
   end
 
@@ -53,5 +52,4 @@ class UsersController < ApplicationController
     return user.update_without_password(user_params) if user_params.fetch(:password, '').blank?
     user.update(user_params)
   end
-
 end
