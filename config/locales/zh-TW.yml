@@ -28,7 +28,11 @@ zh-TW:
       user:
         name: '員工姓名'
         email: 'E-mail'
-        card_serial: '打片序號'
+        card_serial: '卡片序號'
+    hints:
+      user:
+        password: 'leave blank if you do not want to change it'
+        current_password: 'we need your current password to confirm your changes'
   views:
     pagination:
       truncate: "..."

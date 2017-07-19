@@ -1,7 +1,8 @@
 .card-block
     = f.input :name
     = f.input :email
-    = f.input :password unless user.persisted?
+    = f.input :password, hint: false unless user.persisted?
+    = f.input :password if user.persisted?
     / TODO: Create a helper for collection
     = f.input :job_type, collection: User.job_types.map { |type, id| [t("user.job_type.#{type}"), type] }
     = f.input :card_serial if user.card_serial.present?
