@@ -9,7 +9,14 @@ Rails.application.routes.draw do
   }
 
   root 'dashboard#index'
-  resources :users_admin, controller: 'users'
+
+  resources :users_admin, controller: 'users' do
+    member do
+      patch "recover"
+    end
+  end
+
+
   resources :check_records, only: [:index]
   resources :machines do
     scope module: :machines do

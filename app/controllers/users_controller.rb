@@ -2,9 +2,9 @@
 
 class UsersController < ApplicationController
   before_action :user_admin?, except: :index
-  before_action :find_user, only: [:edit, :update, :destroy]
+  before_action :find_user, only: [:edit, :update, :destroy, :recover]
   def index
-    @users = User.unscoped.all
+    @users = User.all.unscoped
 
     respond_to do |format|
       format.html
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.unscoped.all.find(params[:id])
+    @user = User.all.unscoped.find(params[:id])
   end
 
   def user_admin?

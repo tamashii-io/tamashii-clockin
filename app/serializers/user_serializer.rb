@@ -7,7 +7,7 @@ class UserSerializer < ActiveModel::Serializer
     {
       edit: edit_users_admin_path(object),
       self: users_admin_path(object),
-      index: users_admin_index_path
+      recover: recover_users_admin_path(object)
     }
   end
 

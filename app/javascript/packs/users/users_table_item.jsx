@@ -29,24 +29,25 @@ class UsersTableItem extends React.Component {
   }
 
   renderEditAndDeleteButton(links) {
-    if (this.props.user.deleted){
-      return (<a 
-                href={links.index} 
-                className="btn btn-info"
-                data-method="recover"
+
+    if (this.props.isAdmin === 'true') {
+      var view = [<a href={links.edit} className="btn btn-primary">編輯</a>];
+      if (this.props.user.deleted){
+        view.push(<a 
+                href={links.recover} 
+                className="btn btn-success"
+                data-method="patch"
                 data-confirm="Are you sure?"
                 >復職</a>);
-    }
-    if (this.props.isAdmin === 'true') {
-      return ([
-        <a href={links.edit} className="btn btn-primary">編輯</a>,
-        <a
+      }else{
+        view.push(<a
           href={links.self}
           className="btn btn-danger"
           data-method="delete"
           data-confirm="Are you sure?"
-        >離職</a>,
-      ]);
+        >離職</a>);
+      }
+      return view;
     }
 
     return undefined;
