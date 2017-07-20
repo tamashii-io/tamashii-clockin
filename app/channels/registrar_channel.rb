@@ -13,16 +13,11 @@ class RegistrarChannel < ApplicationCable::Channel
   class << self
     def register(registrar, machine_serial, card_serial, packet_id)
       broadcast_to(registrar, type: EVENTS[:register], machine_serial: machine_serial, card_serial: card_serial, packet_id: packet_id)
-      broadcast_to('registrar_card_serial', machine_serial: machine_serial, card_serial: card_serial, packet_id: packet_id)
     end
 
     def update(user)
       broadcast_to('registrar_channel', type: EVENTS[:update], user: user)
     end
-  end
-
-  def subscribed
-    stream_for 'registrar_card_serial'
   end
 
   def follow
