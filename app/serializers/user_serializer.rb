@@ -2,11 +2,12 @@
 
 class UserSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :name, :email, :card_serial
+  attributes :id, :name, :email, :card_serial, :deleted
   attribute :links do
     {
       edit: edit_users_admin_path(object),
-      self: users_admin_path(object)
+      self: users_admin_path(object),
+      index: users_admin_index_path
     }
   end
 

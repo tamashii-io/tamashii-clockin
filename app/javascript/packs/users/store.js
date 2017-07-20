@@ -20,7 +20,9 @@ const User = Record({
   links: {
     edit: '',
     self: '',
+    index: '',
   },
+  deleted: '',
 });
 
 const usersToRecord = users => users.map(user => new User(user));

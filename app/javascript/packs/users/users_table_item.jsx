@@ -19,7 +19,7 @@ class UsersTableItem extends React.Component {
       this.registerUser();
     };
 
-    if (this.props.isAdmin === 'true') {
+    if (this.props.isAdmin === 'true' && !(this.props.user.deleted)) {
       return (
         <a href="" onClick={onClick} className="btn btn-success">綁定</a>
       );
@@ -29,6 +29,14 @@ class UsersTableItem extends React.Component {
   }
 
   renderEditAndDeleteButton(links) {
+    if (this.props.user.deleted){
+      return (<a 
+                href={links.index} 
+                className="btn btn-info"
+                data-method="recover"
+                data-confirm="Are you sure?"
+                >復職</a>);
+    }
     if (this.props.isAdmin === 'true') {
       return ([
         <a href={links.edit} className="btn btn-primary">編輯</a>,
@@ -37,7 +45,7 @@ class UsersTableItem extends React.Component {
           className="btn btn-danger"
           data-method="delete"
           data-confirm="Are you sure?"
-        >刪除</a>,
+        >離職</a>,
       ]);
     }
 
