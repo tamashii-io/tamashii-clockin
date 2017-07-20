@@ -10,6 +10,7 @@ class UsersTableItem extends React.Component {
   }
 
   renderCardSerial(value) {
+    const user = this.props.user;
     if (value.length > 0) {
       return value;
     }
@@ -19,7 +20,7 @@ class UsersTableItem extends React.Component {
       this.registerUser();
     };
 
-    if (this.props.isAdmin === 'true' && !(this.props.user.deleted)) {
+    if (this.props.isAdmin === 'true' && !(user.deleted)) {
       return (
         <a href="" onClick={onClick} className="btn btn-success">綁定</a>
       );
@@ -29,17 +30,18 @@ class UsersTableItem extends React.Component {
   }
 
   renderEditAndDeleteButton(links) {
-
+    const view = [];
+    const user = this.props.user;
     if (this.props.isAdmin === 'true') {
-      var view = [<a href={links.edit} className="btn btn-primary">編輯</a>];
-      if (this.props.user.deleted){
-        view.push(<a 
-                href={links.recover} 
-                className="btn btn-success"
-                data-method="patch"
-                data-confirm="Are you sure?"
-                >復職</a>);
-      }else{
+      view.push(<a href={links.edit} className="btn btn-primary">編輯</a>);
+      if (user.deleted) {
+        view.push(<a
+          href={links.recover}
+          className="btn btn-success"
+          data-method="patch"
+          data-confirm="Are you sure?"
+        >復職</a>);
+      } else {
         view.push(<a
           href={links.self}
           className="btn btn-danger"

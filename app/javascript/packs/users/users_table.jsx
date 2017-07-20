@@ -53,7 +53,7 @@ class UsersTable extends React.Component {
   users() {
     const users = this.state.users;
     const isAdmin = this.props.isAdmin;
-    return users.map(user => <UsersTableItem key={user.id} user={user} isAdmin={isAdmin}/>);
+    return users.map(user => <UsersTableItem key={user.id} user={user} isAdmin={isAdmin} />);
   }
 
   hasNextUser() {
@@ -92,7 +92,6 @@ class UsersTable extends React.Component {
 
 UsersTable.propTypes = {
   isAdmin: PropTypes.string.isRequired,
-  isDeleted: PropTypes.string.isRequired,
 };
 
 export default UsersTable;

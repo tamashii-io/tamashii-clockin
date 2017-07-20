@@ -12,10 +12,9 @@ Rails.application.routes.draw do
 
   resources :users_admin, controller: 'users' do
     member do
-      patch "recover"
+      patch 'recover'
     end
   end
-
 
   resources :check_records, only: [:index]
   resources :machines do
