@@ -58,7 +58,7 @@ class UserStore extends EventEmitter {
           RegistrarChannel.perform(
             'start_or_cancel_register',
             {
-              userId: this.nextRegisterUserId,
+              user_id: this.nextRegisterUserId,
             },
           );
         }
@@ -70,7 +70,7 @@ class UserStore extends EventEmitter {
           RegistrarChannel.perform(
             'register',
             {
-              userId: this.nextRegisterUserId,
+              user_id: this.nextRegisterUserId,
               machine_serial: action.machine_serial,
               card_serial: action.card_serial,
               packet_id: action.packet_id,

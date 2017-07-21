@@ -35,9 +35,9 @@ class RegistrarChannel < ApplicationCable::Channel
     card_serial = data['card_serial']
     machine_serial = data['machine_serial']
 
-    return TamashiiRailsHook.response_register_status(machine_serial, packet_id, data['new_user']) if data['userId'].nil?
+    return TamashiiRailsHook.response_register_status(machine_serial, packet_id, data['new_user']) if data['user_id'].nil?
 
-    user = User.find(data['userId'])
+    user = User.find(data['user_id'])
 
     return TamashiiRailsHook.response_register_status(machine_serial, packet_id, false) unless user.register(card_serial)
     RegistrarChannel.broadcast_to('registrar_channel', type: EVENTS[:success], user: user)
@@ -45,7 +45,7 @@ class RegistrarChannel < ApplicationCable::Channel
   end
 
   def start_or_cancel_register(data)
-    return RegistrarChannel.broadcast_to('registrar_channel', type: EVENTS[:start_register], broadcast: false) if data['userId'].nil?
-    RegistrarChannel.broadcast_to('registrar_channel', type: EVENTS[:start_register], userId: data['userId'], broadcast: false)
+    return RegistrarChannel.broadcast_to('registrar_channel', type: EVENTS[:start_register], broadcast: false) if data['user_id'].nil?
+    RegistrarChannel.broadcast_to('registrar_channel', type: EVENTS[:start_register], userId: data['user_id'], broadcast: false)
   end
 end
