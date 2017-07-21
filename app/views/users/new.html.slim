@@ -5,4 +5,5 @@
         .card
           .card-header = t('.title')
           = simple_form_for @user, url: users_admin_index_path(@user), method: "post" do |f|
-            = render partial: "form", locals: { f: f, user: @user}
+            = render partial: "form", locals: { f: f, user: @user }
+

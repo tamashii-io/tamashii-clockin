@@ -15,7 +15,7 @@ import Mounter from './helpers/mounter';
 import CheckrecordsTable from './checkrecords/check_records_table';
 import UsersTable from './users/users_table';
 import MachinesTable from './machines/machines_table';
-
+import RegisterCardSerial from './users/register_card_serial';
 
 const modules = [
   new Mounter('#checkrecords', CheckrecordsTable),
@@ -23,10 +23,14 @@ const modules = [
   new Mounter('#machines', MachinesTable),
 ];
 
+const registerCardSerial = new RegisterCardSerial('[data-card-serial="true"]');
+
 document.addEventListener('turbolinks:before-cache', () => {
   modules.forEach(module => module.unmount());
+  registerCardSerial.unmount();
 });
 
 document.addEventListener('turbolinks:load', () => {
   modules.forEach(module => module.mount());
+  registerCardSerial.mount();
 });
