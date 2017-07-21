@@ -21,7 +21,7 @@ class RegisterCardSerial {
   }
 
   registerCardSerial(data) {
-    this.$el.querySelector('#user_card_serial').value = data.card_serial;
+    this.$el.value = data.card_serial;
     RegistrarChannel.perform(
       'register',
       {

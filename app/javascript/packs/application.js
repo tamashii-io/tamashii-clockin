@@ -23,7 +23,7 @@ const modules = [
   new Mounter('#machines', MachinesTable),
 ];
 
-const registerCardSerial = new RegisterCardSerial('[data-card-serial="true"]');
+const registerCardSerial = new RegisterCardSerial('[data-card-serial="true"] #user_card_serial');
 
 document.addEventListener('turbolinks:before-cache', () => {
   modules.forEach(module => module.unmount());

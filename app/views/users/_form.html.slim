@@ -1,4 +1,4 @@
-.card-block data-card-serial = is_create
+.card-block data-card-serial = "#{user.new_record?}"
     = f.input :name
     = f.input :email
     = f.input :password unless user.persisted?
