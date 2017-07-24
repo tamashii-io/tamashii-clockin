@@ -2,9 +2,9 @@
 
 class UsersController < ApplicationController
   before_action :user_admin?, except: :index
-  before_action :find_user, only: [:edit, :update, :destroy]
+  before_action :find_user, only: [:edit, :update, :destroy, :recover]
   def index
-    @users = User.active
+    @users = User.all.unscoped
 
     respond_to do |format|
       format.html
@@ -34,6 +34,11 @@ class UsersController < ApplicationController
     redirect_to users_admin_index_path
   end
 
+  def recover
+    @user.update_without_password(deleted: false)
+    redirect_to users_admin_index_path
+  end
+
   private
 
   def user_params
@@ -41,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def find_user
-    @user = User.active.find(params[:id])
+    @user = User.all.unscoped.find(params[:id])
   end
 
   def user_admin?
