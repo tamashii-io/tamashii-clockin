@@ -39,7 +39,11 @@ class CheckRecordStore extends EventEmitter {
       }
       case CHECK_RECORD_SET: {
         const checkRecord = new CheckRecord(action.check_record);
-        this.check_records = this.check_records.pop().unshift(checkRecord);
+        if (this.check_records.size < 25) {
+          this.check_records = this.check_records.unshift(checkRecord);
+        } else {
+          this.check_records = this.check_records.pop().unshift(checkRecord);
+        }
         this.emit(action.type, this.check_records);
         break;
       }
