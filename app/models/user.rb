@@ -11,7 +11,6 @@ class User < ApplicationRecord
   after_save -> { RegistrarChannel.update(self) }
 
   default_scope -> { where(deleted: false) }
-  scope :active, -> { where(deleted: false) }
   scope :managers, -> { where(deleted: false, admin: true) }
 
   after_save :delete_check_records, if: :delete_check_records?

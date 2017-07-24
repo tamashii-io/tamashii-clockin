@@ -20,7 +20,7 @@ class UsersTableItem extends React.Component {
       this.registerUser();
     };
 
-    if (this.props.isAdmin === 'true' && !(user.deleted)) {
+    if (this.props.isAdmin === 'true' && !user.deleted) {
       return (
         <a href="" onClick={onClick} className="btn btn-success">綁定</a>
       );
