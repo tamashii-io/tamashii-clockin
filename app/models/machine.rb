@@ -18,6 +18,10 @@ class Machine < ApplicationRecord
     Tamashii::Manager::Client.send_to(serial, packet.dump)
   end
 
+  def on_accept
+    process_command :lcd_set_idle_text, "Tamashii Clockin\nSystem Ready"
+  end
+
   # TODO: Use ruby auto generate below code
   def beep(type = 'ok')
     process_command :beep, type
