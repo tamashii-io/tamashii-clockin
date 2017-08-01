@@ -56,15 +56,15 @@ class User < ApplicationRecord
     return false if user.nil?
     result = user.checkin
     return nil unless result
-    greeting = (user.check_records.today.count % 2).zero? ? "Hello!" : "Good Bye!"
-    { auth: true, reason: 'checkin', message: "#{greeting}\n#{user.ascii_only_name}"}
+    greeting = (user.check_records.today.count % 2).zero? ? 'Hello!' : 'Good Bye!'
+    { auth: true, reason: 'checkin', message: "#{greeting}\n#{user.ascii_only_name}" }
   end
 
   def ascii_only_name
-    if self.name.ascii_only?
-      self.name
+    if name.ascii_only?
+      name
     else
-      self.email.split('@').first
+      email.split('@').first
     end
   end
 
