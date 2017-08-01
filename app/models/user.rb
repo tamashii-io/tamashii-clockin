@@ -56,7 +56,7 @@ class User < ApplicationRecord
     return false if user.nil?
     result = user.checkin
     return nil unless result
-    greeting = (user.check_records.today.count % 2).zero? ? 'Hello!' : 'Good Bye!'
+    greeting = (user.check_records.today.count % 2).zero? ? 'Good Bye!' : 'Hello!'
     { auth: true, reason: 'checkin', message: "#{greeting}\n#{user.ascii_only_name}" }
   end
 
