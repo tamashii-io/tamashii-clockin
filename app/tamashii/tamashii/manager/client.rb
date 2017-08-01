@@ -20,6 +20,12 @@ module Tamashii
         # TODO: Save machine exit data
         origin_on_close
       end
+
+      alias origin_accept accept
+      def accept(type, id)
+        origin_accept(type, id)
+        ::Machine.find_by(serial: id).on_accept
+      end
     end
   end
 end
