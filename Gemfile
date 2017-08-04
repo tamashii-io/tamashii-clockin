@@ -31,7 +31,7 @@ gem 'devise'
 gem 'pundit'
 
 gem 'settingslogic'
-gem 'tamashii-common', '>= 0.1.5'
+gem 'tamashii-common', '>= 0.1.6'
 gem 'tamashii-manager', '>= 0.2.4'
 gem 'active_model_serializers'
 
