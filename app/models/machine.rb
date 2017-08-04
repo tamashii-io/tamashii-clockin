@@ -19,7 +19,7 @@ class Machine < ApplicationRecord
   end
 
   def on_accept
-    process_command :lcd_set_idle_text, "Tamashii Clockin\nSystem Ready"
+    process_command :lcd_set_idle_text, "Welcome to 5xRuby.tw! Tamashii Clockin System Ready\n#{Tamashii::AgentHint::TIME}"
   end
 
   # TODO: Use ruby auto generate below code

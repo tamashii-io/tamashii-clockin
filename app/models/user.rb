@@ -56,8 +56,41 @@ class User < ApplicationRecord
     return false if user.nil?
     result = user.checkin
     return nil unless result
-    greeting = (user.check_records.today.count % 2).zero? ? 'Good Bye!' : 'Hello!'
+    greeting = generate_greeting(user)
     { auth: true, reason: 'checkin', message: "#{greeting}\n#{user.ascii_only_name}" }
+  end
+
+  def self.generate_greeting(user)
+    if (user.check_records.today.count % 2).zero?
+      # clock out
+      clock_out_greeting
+    else
+      # clock in
+      clock_in_greeting
+    end
+  end
+
+  def self.compute_late_time(time_now, time_limit)
+    seconds = time_now - time_limit
+    min = (seconds / 60.0).ceil
+    hour = min / 60
+    min %= 60
+    [hour, min]
+  end
+
+  def self.clock_in_greeting
+    time_limit = Time.zone.parse(Settings.clockin_time_limit)
+    time_now = Time.zone.now
+    if time_now > time_limit # Late
+      hour, min = compute_late_time(time_now, time_limit)
+      "Late for #{hour}h#{min}m!"
+    else # In time
+      'Hello'
+    end
+  end
+
+  def self.clock_out_greeting
+    'Good Bye!'
   end
 
   def ascii_only_name

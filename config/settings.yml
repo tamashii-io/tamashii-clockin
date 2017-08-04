@@ -10,7 +10,7 @@ default: &default
     channel: <%= ENV['FLOWDOCK_CHANNEL'] %>
   slack:
     token: <%= ENV['SLACK_TOKEN'] %>
-
+  clockin_time_limit: "10:00"
 
 development:
   <<: *default
