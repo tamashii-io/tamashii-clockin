@@ -1,24 +1,56 @@
-# README
+Tamashii Clock-in [![Build Status](https://travis-ci.org/tamashii-io/tamashii-clockin.svg?branch=master)](https://travis-ci.org/tamashii-io/tamashii-clockin)
+===
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
 
-Things you may want to cover:
+* Ruby 2.4.0
+* PostgreSQL 9.5+
+* Redis
+* Node.js
+* Yarn
 
-* Ruby version
+## Usage
 
-* System dependencies
+### Install Dependency
 
-* Configuration
+```
+$ bundle install
+```
 
-* Database creation
+### Prepare Database
 
-* Database initialization
+If you didn't have database.
 
-* How to run the test suite
+```
+$ rake db:create
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+And run migration to create tables.
 
-* Deployment instructions
+```
+$ rake db:migrate
+```
 
-* ...
+### Rails
+
+Start Rails server
+
+```
+$ rails s
+```
+
+### Webpack
+
+Make sure running `webpack-dev-server` to building javascript.
+
+Above require `binstub` setup for your system.
+
+```
+$ webpack-dev-server
+```
+
+or
+
+```
+$ ./bin/webpack-dev-server
+```
