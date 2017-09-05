@@ -51,7 +51,7 @@ group :development, :test do
   gem 'faker'
 
   gem 'dotenv-rails'
-  gem 'rubocop', require: false
+  gem 'rubocop', '0.49.1', require: false
   gem 'scss_lint', require: false
   gem 'timecop'
 end
