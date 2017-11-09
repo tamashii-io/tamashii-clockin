@@ -28,6 +28,9 @@ gem 'groupdate'
 gem 'kaminari'
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-gitlab'
+gem 'koala', '>= 2.2'
 gem 'pundit'
 
 gem 'settingslogic'
