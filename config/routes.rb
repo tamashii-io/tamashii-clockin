@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     get '/users/sign_up', to: 'check_records#index'
   end
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   root 'dashboard#index'
