@@ -10,6 +10,9 @@ default: &default
     channel: <%= ENV['FLOWDOCK_CHANNEL'] %>
   slack:
     token: <%= ENV['SLACK_TOKEN'] %>
+  gitlab:
+    app_id: <%= ENV['GITLAB_APP_ID'] %>
+    app_secret: <%= ENV['GITLAB_APP_SECRET'] %>
   clockin_time_limit: "10:00"
 
 development:
