@@ -16,5 +16,6 @@
           .row
             .col-6
               = f.button :submit, "Login", class: 'btn btn-primary px-4'
+              = link_to "Sign in with Gitlab", user_gitlab_omniauth_authorize_path
             .col-6.text-right
               = link_to "Forgot password?", new_password_path(resource_name), class: 'btn btn-link px-0'
