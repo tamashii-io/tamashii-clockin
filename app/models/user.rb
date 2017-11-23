@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, :omniauth_providers => [:gitlab]
+         :omniauthable, omniauth_providers: [:gitlab]
 
   validates :card_serial, uniqueness: { allow_blank: true }
 
@@ -108,11 +108,7 @@ class User < ApplicationRecord
       user.update_attributes(gitlab_id: auth.uid)
       return user
     end
-    create do |user|
-      user.email = auth.info.email
-      user.gitlab_id = auth.uid
-      user.password = Devise.friendly_token[0, 20]
-    end
+    create(email: auth.info.email, gitlab_id: auth.uid, password: Devise.friendly_token[0, 20])
   end
 
   private
