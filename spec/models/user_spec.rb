@@ -67,4 +67,39 @@ RSpec.describe User, type: :model do
       expect(subject.check_records.first.behavior).to eq('clockout')
     end
   end
+
+  describe '.from_omniauth' do
+    def auth(hash = {})
+      auth = { provider: 'gitlab',
+               uid: '1234567890',
+               info: {
+                 email: 'test@test.com',
+                 first_name: 'first',
+                 last_name: 'last'
+               } }.merge(hash)
+      JSON.parse(auth.to_json, object_class: OpenStruct)
+    end
+
+    context 'existed user' do
+      subject { create(:user, email: 'test@test.com', gitlab_id: nil) }
+
+      it 'has authorized' do
+        subject.update_attributes(gitlab_id: '1234567890')
+        expect { User.from_omniauth(auth) }.to change { described_class.count }.by(0)
+      end
+
+      it 'has not authorized' do
+        subject
+        User.from_omniauth(auth)
+        expect(subject.reload.gitlab_id).to eq('1234567890')
+      end
+    end
+
+    it 'new user' do
+      expect { User.from_omniauth(auth) }.to change { described_class.count }.by(1)
+      user = User.last
+      expect(user.email).to eq('test@test.com')
+      expect(user.gitlab_id).to eq('1234567890')
+    end
+  end
 end
