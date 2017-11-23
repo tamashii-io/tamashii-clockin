@@ -3,19 +3,10 @@
     .card-group style="justify-content:center"
       .card.p-2
         .card-block
-          h1 Login
+          h1 Tamashii Clockin
           p.text-muted Sign In to your account
-          .input-group.mb-1
-            span.input-group-addon
-              i.icon-user
-            = f.input_field :email, label: false, class: 'form-control', required: false, autofocus: true, placeholder: 'Username'
-          .input-group.mb-2
-            span.input-group-addon
-              i.icon-lock
-            = f.input_field :password, label: false, class: 'form-control', required: false, placeholder: 'Password'
           .row
             .col-6
-              = f.button :submit, "Login", class: 'btn btn-primary px-4'
-              = link_to "Sign in with Gitlab", user_gitlab_omniauth_authorize_path
-            .col-6.text-right
-              = link_to "Forgot password?", new_password_path(resource_name), class: 'btn btn-link px-0'
+              = link_to user_gitlab_omniauth_authorize_path, class: 'btn btn-gitlab' do
+                i.icon.fa.fa-gitlab.fa-2x
+                |   Login with GitLab
