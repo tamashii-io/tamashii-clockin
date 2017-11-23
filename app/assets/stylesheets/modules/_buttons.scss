@@ -1,14 +1,10 @@
 .btn-gitlab {
+
   background-color: $color-gitlab;
 
-  &:hover {
-    background-color: $color-gitlab-hover;
-    color: $color-white;
-  }
+  border-radius: 4px;
 
   color: $color-white;
-
-  border-radius: 4px;
 
   font-size: 1.1rem;
 
@@ -16,11 +12,15 @@
 
   line-height: 2;
 
-  .icon {
-    position: relative;
+  &:hover {
+    background-color: $color-gitlab-hover;
+    color: $color-white;
+  }
 
-    top: 6px;
+  .icon {
     left: -5px;
+    position: relative;
+    top: 6px;
   }
 
   .fa-gitlab {
