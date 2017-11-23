@@ -1,0 +1,29 @@
+.btn-gitlab {
+  background-color: $color-gitlab;
+
+  &:hover {
+    background-color: $color-gitlab-hover;
+    color: $color-white;
+  }
+
+  color: $color-white;
+
+  border-radius: 4px;
+
+  font-size: 1.1rem;
+
+  font-weight: bold;
+
+  line-height: 2;
+
+  .icon {
+    position: relative;
+
+    top: 6px;
+    left: -5px;
+  }
+
+  .fa-gitlab {
+    color: $fa-gitlab-color;
+  }
+}
