@@ -103,12 +103,12 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    user = find_by(email: auth.info.email)
-    unless user.nil?
-      user.update_attributes(gitlab_id: auth.uid)
-      return user
+    user = find_or_create_by(email: auth.info.email) do |u|
+      u.gitlab_id = auth.uid
+      u.password = Devise.friendly_token[0, 20]
     end
-    create(email: auth.info.email, gitlab_id: auth.uid, password: Devise.friendly_token[0, 20])
+    user.update_attributes(gitlab_id: auth.uid) unless user.gitlab_id?
+    return user
   end
 
   private
