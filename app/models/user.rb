@@ -108,7 +108,7 @@ class User < ApplicationRecord
       u.password = Devise.friendly_token[0, 20]
     end
     user.update_attributes(gitlab_id: auth.uid) unless user.gitlab_id?
-    return user
+    user
   end
 
   private
