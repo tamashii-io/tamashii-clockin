@@ -13,6 +13,7 @@ zh-TW:
     job_type:
       full_time: 正職
       intern: 實習
+      student: 學員
   machines:
     index:
       title: '機器列表'
