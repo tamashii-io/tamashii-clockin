@@ -5,7 +5,7 @@
     = f.input :password if user.persisted?
     / TODO: Create a helper for collection
     = f.input :job_type, collection: User.job_types.map { |type, id| [t("user.job_type.#{type}"), type] }
-    = f.input :group_id, collection: Group.all
+    = f.association :groups, collection: Group.all, :multiple => true, include_blank: true
     = f.input :card_serial, input_html: { "data-card-serial": user.new_record? }
 .card-footer
     = f.button :submit, class: 'btn btn-primary'

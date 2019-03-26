@@ -29,12 +29,13 @@ class GroupsController < ApplicationController
   end
 
   private
+
   def user_admin?
     redirect_to users_admin_index_path, notice: 'invalid user' unless current_user.admin?
   end
 
   def group_params
-    params.require(:group).permit(:title, :join_time)
+    params.require(:group).permit(:title)
   end
 
   def find_group
