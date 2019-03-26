@@ -4,5 +4,5 @@
       .col-lg-12
         .card
           .card-header = t('.title')
-          = simple_form_for @membership, url: new_membership_path(@membership) do |f|
-            = render partial: "form", locals: { f: f, user: @membership }
+          = simple_form_for @group, url: groups_path(@group) do |f|
+            = render partial: "form", locals: { f: f}

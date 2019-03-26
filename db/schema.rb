@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20190325081203) do
 
   create_table "groups", force: :cascade do |t|
     t.string "title"
-    t.date "join_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
