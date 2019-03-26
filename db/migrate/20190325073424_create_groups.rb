@@ -1,6 +1,6 @@
-class CreateMemberships < ActiveRecord::Migration[5.1]
+class CreateGroups < ActiveRecord::Migration[5.1]
   def change
-    create_table :memberships do |t|
+    create_table :groups do |t|
       t.string :title
       t.date :join_time
 

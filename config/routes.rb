@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :groups
   resources :check_records, only: [:index]
   resources :machines do
     scope module: :machines do
