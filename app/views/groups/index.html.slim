@@ -20,7 +20,7 @@
                   tbody
                     - @groups.each do |group|
                       tr
-                        td = group.title
+                        td.align-middle = group.title
                         td
                          = link_to "編輯", edit_group_path(group), class: "btn btn-primary"
                          = link_to "刪除", group_path(group), method: "delete", date: { confirm: "確認？"}, class: "btn btn-danger"
