@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190326075157) do
+ActiveRecord::Schema.define(version: 20190328023221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,13 +23,13 @@ ActiveRecord::Schema.define(version: 20190326075157) do
     t.boolean "deleted", default: false
   end
 
-  create_table "group_lists", force: :cascade do |t|
+  create_table "groupings", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_lists_on_group_id"
-    t.index ["user_id"], name: "index_group_lists_on_user_id"
+    t.index ["group_id"], name: "index_groupings_on_group_id"
+    t.index ["user_id"], name: "index_groupings_on_user_id"
   end
 
   create_table "groups", force: :cascade do |t|

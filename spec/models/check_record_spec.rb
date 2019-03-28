@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe CheckRecord, type: :model do
   describe 'Associations' do
-    it { CheckRecord.reflect_on_association(:user).macro.should eq(:belongs_to) }
+    it { should belong_to :user }
   end
 
   subject { create(:check_record) }

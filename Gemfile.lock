@@ -406,6 +406,7 @@ DEPENDENCIES
   selenium-webdriver
   settingslogic
   shoulda
+  shoulda-matchers
   simple-line-icons-rails (~> 0.1.2)
   simple_form
   slim-rails
