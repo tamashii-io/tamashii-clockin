@@ -7,4 +7,11 @@ RSpec.describe Membership, type: :model do
     it { should belong_to :user }
     it { should belong_to :group }
   end
+
+  subject { create(:membership) }
+
+  describe 'create membership' do
+    it { expect(subject.user_id).to be_kind_of(Integer) }
+    it { expect(subject.group_id).to be_kind_of(Integer) }
+  end
 end
