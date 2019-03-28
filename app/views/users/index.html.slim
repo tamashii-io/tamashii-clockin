@@ -1,5 +1,6 @@
 - breadcrumb :users
 - content_for :breadcrumb_actions
+  = manage_group_button
   = create_user_button
 .container-fluid
   .animated.fadeIn
@@ -14,14 +15,16 @@
                   tr
                     td 姓名
                     td 卡片編號
+                    td 群組
                     td 處理
                   tbody
                     - @users.each do |user|
                       tr
-                        td = user.email
+                        td.align-middle = user.email
                         td = user.card_serial
+                        td
+                          - user.groups.map(&:title).each do |e|
+                            button.btn.btn-outline-primary= e
                         td
                          = link_to "編輯", edit_users_admin_path(user), class: "btn btn-primary"
                          = link_to "刪除", users_admin_path(user), method: "delete", date: { confirm: "確認？"}, class: "btn btn-danger"
-
-

@@ -3,7 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it { should have_many(:check_records) }
+  describe 'Associations' do
+    it { should have_many :check_records }
+  end
 
   subject { create(:user) }
 

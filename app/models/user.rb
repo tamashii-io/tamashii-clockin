@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_many :check_records
   has_many :machines
+  has_many :memberships
+  has_many :groups, through: :memberships
   after_save -> { RegistrarChannel.update(self) }
 
   default_scope -> { where(deleted: false) }
@@ -16,7 +18,8 @@ class User < ApplicationRecord
   after_save :delete_check_records, if: :delete_check_records?
   enum job_type: {
     full_time: 0,
-    intern: 1
+    intern: 1,
+    student: 2
   }
 
   def username

@@ -1,0 +1,8 @@
+.container-fluid
+  .animated.fadeIn
+    .row
+      .col-lg-12
+        .card
+          .card-header = t('.title')
+          = simple_form_for @group do |f|
+            = render partial: "form", locals: { f: f, user: @group }
