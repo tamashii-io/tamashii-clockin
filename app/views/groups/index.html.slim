@@ -9,10 +9,11 @@
         .card
           .card-header = t('.title')
           .card-block
+            ul.nav.justify-content-end
+              li.nav-item
+                = link_to "新增群組", new_group_path, class: "btn btn-primary"
             div data-is-admin= "#{current_user.admin?}"
               table.table.table-bordered.table-striped.table-condensed
-                div.group-tool.pull-right
-                  = link_to "新增群組", new_group_path, class: "btn btn-primary"
                 thead
                   tr
                     td 群組名稱
