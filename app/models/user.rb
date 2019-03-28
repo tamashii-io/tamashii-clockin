@@ -8,8 +8,8 @@ class User < ApplicationRecord
 
   has_many :check_records
   has_many :machines
-  has_many :groupings
-  has_many :groups, through: :groupings
+  has_many :memberships
+  has_many :groups, through: :memberships
   after_save -> { RegistrarChannel.update(self) }
 
   default_scope -> { where(deleted: false) }
