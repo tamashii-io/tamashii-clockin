@@ -32,7 +32,7 @@ const MachinesTableItem = ({ machine }) => (
       <a href={machine.links.edit} className="btn btn-primary">編輯</a>
       <a
         href={machine.links.self}
-        className="btn btn-danger"
+        className="btn btn-danger ml-2"
         data-method="delete"
         data-confirm="Are you sure?"
       >刪除</a>

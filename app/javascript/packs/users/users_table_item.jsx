@@ -33,18 +33,20 @@ class UsersTableItem extends React.Component {
     const view = [];
     const user = this.props.user;
     if (this.props.isAdmin === 'true') {
-      view.push(<a href={links.edit} className="btn btn-primary">編輯</a>);
+      view.push(<a key={view.length} href={links.edit} className="btn btn-primary">編輯</a>);
       if (user.deleted) {
         view.push(<a
+          key={view.length}
           href={links.recover}
-          className="btn btn-success"
+          className="btn btn-success ml-2"
           data-method="patch"
           data-confirm="Are you sure?"
         >復職</a>);
       } else {
         view.push(<a
+          key={view.length}
           href={links.self}
-          className="btn btn-danger"
+          className="btn btn-danger ml-2"
           data-method="delete"
           data-confirm="Are you sure?"
         >離職</a>);
