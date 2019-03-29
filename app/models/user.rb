@@ -107,7 +107,7 @@ class User < ApplicationRecord
   private
 
   def delete_check_records?
-    deleted_changed? && deleted
+    saved_change_to_deleted? && deleted
   end
 
   def delete_check_records
