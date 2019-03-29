@@ -1,5 +1,5 @@
 # base image
-image: "ruby:2.4.1"
+image: "ruby:2.5.3"
 
 # Services
 services:
@@ -30,10 +30,10 @@ cache:
 before_script:
   - if [[ ! -f /usr/local/bin/node ]]; then curl -SLO https://nodejs.org/dist/v$NODE_VERSION/node-v${NODE_VERSION}-linux-x64.tar.xz && tar -xJf node-v${NODE_VERSION}-linux-x64.tar.xz -C /usr/local --strip-components=1; fi
   - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-  - apt-get update && apt-get install apt-transport-https
+  - apt-get update && apt-get install apt-transport-https -y
   - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-  - apt-get update && apt-get install yarn
-  - gem install bundler -v 1.15.1 --no-ri --no-rdoc    # bundler is not installed with the image
+  - apt-get update && apt-get install yarn -y
+  - gem install bundler -v 1.17.3  # bundler is not installed with the image
   - ruby -v
   - node -v
   - yarn -v
