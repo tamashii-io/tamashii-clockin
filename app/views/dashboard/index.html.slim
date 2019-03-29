@@ -2,19 +2,15 @@
 .container-fluid
   .animated.fadeIn
     .card
-      .card-block
-        .row
-          .col-sm-12
-            h4.card-title Daily Activity
-            .small.text-muted(style="margin-top: 10px") = l Time.zone.today, format: :long
+      .card-body
+        h4.card-title Daily Activity
+        h5.card-subtitle.text-muted.mb-2 = l Time.zone.today, format: :long
         .chart-wrapper(style="margin-top: 40px; height: 300px")
           canvas#daily-activity height=300
     .card
-      .card-block
-        .row
-          .col-sm-12
-            h4.card-title Monthly Activity
-            .small.text-muted(style="margin-top: 10px") = l Time.zone.today, format: :abbr_month
+      .card-body
+        h4.card-title Monthly Activity
+        h5.card-subtitle.text-muted.mb-2 = l Time.zone.today, format: :abbr_month
         .chart-wrapper(style="margin-top: 40px; height: 300px")
           canvas#monthly-activity height=300
 

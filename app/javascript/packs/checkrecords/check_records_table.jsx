@@ -52,7 +52,7 @@ class CheckRecordsTable extends React.Component {
   render() {
     return (
       <div>
-        <table className="table table-bordered table-striped table-condensed">
+        <table className="table table-striped table-condensed">
           <thead>
             <tr>
               <th>員工{ this.checkRecordsNotify() }</th>

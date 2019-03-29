@@ -8,9 +8,9 @@
       .col-lg-12
         .card
           .card-header = t('.title')
-          .card-block
+          .card-body
             #users data-is-admin= "#{current_user.admin?}"
-              table.table.table-bordered.table-striped.table-condensed
+              table.table.table-striped.table-condensed
                 thead
                   tr
                     td 姓名

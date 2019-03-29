@@ -71,7 +71,7 @@ class UsersTable extends React.Component {
         <Modal isOpen={this.hasNextUser()} toggle={this.closeModal}>
           <ModalBody>Please scan your RFID card to check-in</ModalBody>
         </Modal>
-        <table className="table table-bordered table-striped table-condensed">
+        <table className="table table-striped table-condensed">
           <thead>
             <tr>
               <th>姓名</th>
