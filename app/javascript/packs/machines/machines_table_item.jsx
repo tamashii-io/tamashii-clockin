@@ -35,7 +35,9 @@ const MachinesTableItem = ({ machine }) => (
         className="btn btn-danger ml-2"
         data-method="delete"
         data-confirm="Are you sure?"
-      >刪除</a>
+      >
+刪除
+      </a>
     </td>
   </tr>
 );

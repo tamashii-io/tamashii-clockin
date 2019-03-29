@@ -31,7 +31,7 @@ class MachinesTable extends React.Component {
   }
 
   machines() {
-    const machines = this.state.machines;
+    const { machines } = this.state;
     return machines.map(machine => <MachinesTableItem key={machine.id} machine={machine} />);
   }
 

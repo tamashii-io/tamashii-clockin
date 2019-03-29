@@ -8,8 +8,8 @@ const ENDPOINTS = {
 
 export const fetchMachines = () => {
   $.get(ENDPOINTS.machines)
-   .promise()
-   .done((data) => { store.dispatch({ type: RECEIVE_MACHINES, machines: data }); });
+    .promise()
+    .done((data) => { store.dispatch({ type: RECEIVE_MACHINES, machines: data }); });
 };
 
 export default {

@@ -51,13 +51,14 @@ class UsersTable extends React.Component {
   }
 
   users() {
-    const users = this.state.users;
-    const isAdmin = this.props.isAdmin;
+    const { users } = this.state;
+    const { isAdmin } = this.props;
     return users.map(user => <UsersTableItem key={user.id} user={user} isAdmin={isAdmin} />);
   }
 
   hasNextUser() {
-    return this.state.nextRegisterUserId > 0;
+    const { nextRegisterUserId } = this.state;
+    return nextRegisterUserId > 0;
   }
 
   closeModal() {

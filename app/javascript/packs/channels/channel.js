@@ -40,4 +40,3 @@ class Channel extends EventEmitter {
 }
 
 export default Channel;
-

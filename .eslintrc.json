@@ -1,10 +1,13 @@
 {
-    "extends": "airbnb",
     "env": {
         "browser": true,
         "es6": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+      "eslint:recommended",
+      "airbnb",
+      "plugin:react/recommended"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -17,6 +20,7 @@
         "sourceType": "module"
     },
     "plugins": [
+        "jsx-a11y",
         "react"
     ],
     "globals": {

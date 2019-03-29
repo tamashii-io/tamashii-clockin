@@ -2,13 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // TODO: Bind ajax:success event for command result
-const CommandButton = ({ name, skin, link, command }) => (
+const CommandButton = ({
+  name, skin, link, command,
+}) => (
   <a
     className={`btn btn-${skin}`}
     data-remote="true"
     data-method="post"
     href={`${link}?command=${command}`}
-  >{name}</a>
+  >
+    {name}
+  </a>
 );
 
 CommandButton.propTypes = {

@@ -12,8 +12,8 @@ const ENDPOINTS = {
 
 export const fetchCheckRecords = (page) => {
   $.get(ENDPOINTS.check_records(page))
-   .promise()
-   .done((data) => { store.dispatch({ type: RECEIVE_CHECK_RECORDS, check_records: data }); });
+    .promise()
+    .done((data) => { store.dispatch({ type: RECEIVE_CHECK_RECORDS, check_records: data }); });
 };
 
 export default {
