@@ -13,8 +13,8 @@ const ENDPOINTS = {
 
 export const fetchUsers = () => {
   $.get(ENDPOINTS.users())
-   .promise()
-   .done((data) => { store.dispatch({ type: RECEIVE_USERS, users: data }); });
+    .promise()
+    .done((data) => { store.dispatch({ type: RECEIVE_USERS, users: data }); });
 };
 
 export const startRegister = (userId, broadcast) => {

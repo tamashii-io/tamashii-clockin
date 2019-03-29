@@ -1,5 +1,5 @@
 = simple_form_for(@machine) do |f|
-  .card-block
+  .card-body
     = f.input :serial
     = f.input :name
     = f.input :type, collection: Machine.types.keys, include_blank: false, include_hidden: false

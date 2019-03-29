@@ -12,7 +12,7 @@ export default class Mounter {
     const $el = document.querySelector(this.selector);
     const Component = this.component;
     if ($el) {
-      const dataset = $el.dataset;
+      const { dataset } = $el;
       ReactDOM.render(<Component {...dataset} />, $el);
     }
   }

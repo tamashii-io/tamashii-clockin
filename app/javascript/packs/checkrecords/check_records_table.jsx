@@ -21,8 +21,9 @@ class CheckRecordsTable extends React.Component {
   }
 
   componentWillMount() {
-    fetchCheckRecords(this.props.page);
-    CheckrecordsChannel.follow({ page: this.props.page });
+    const { page } = this.props;
+    fetchCheckRecords(page);
+    CheckrecordsChannel.follow({ page });
   }
 
   componentDidMount() {
@@ -37,25 +38,29 @@ class CheckRecordsTable extends React.Component {
   }
 
   checkRecords() {
-    const checkRecords = this.state.checkRecords;
+    const { checkRecords } = this.state;
     return checkRecords.map(
       checkRecord => <CheckRecordsTableItem key={checkRecord.id} checkRecord={checkRecord} />,
     );
   }
 
   checkRecordsNotify() {
+    const { notifyNum } = this.state;
     return (
-      <span className="badge badge-pill badge-danger">{this.state.notifyNum}</span>
+      <span className="badge badge-pill badge-danger">{ notifyNum }</span>
     );
   }
 
   render() {
     return (
       <div>
-        <table className="table table-bordered table-striped table-condensed">
+        <table className="table table-striped table-condensed">
           <thead>
             <tr>
-              <th>員工{ this.checkRecordsNotify() }</th>
+              <th>
+員工
+                { this.checkRecordsNotify() }
+              </th>
               <th>時間</th>
               <th>類型</th>
               <th>狀態</th>

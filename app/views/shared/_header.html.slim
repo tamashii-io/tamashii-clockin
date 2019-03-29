@@ -1,5 +1,6 @@
 header.app-header.navbar
-  = link_to "", root_path, class: "navbar-brand"
+  = link_to root_path, class: "navbar-brand" do
+    = image_tag 'logo.png', width: 89
   ul.nav.navbar-nav.navbar-list
     = nav_item "打卡記錄", check_records_path
     = nav_item "員工", users_admin_index_path

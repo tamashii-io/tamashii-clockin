@@ -19,7 +19,7 @@ const CheckRecord = Record({
 
 const checkRecordsToRecord = checkRecords => checkRecords.map(
   checkRecord => new CheckRecord(checkRecord),
-  );
+);
 
 
 class CheckRecordStore extends EventEmitter {
@@ -29,6 +29,7 @@ class CheckRecordStore extends EventEmitter {
     this.notify_new_records = 0;
     CheckrecordsChannel.onReceived(action => this.dispatch(action));
   }
+
   dispatch(action) {
     switch (action.type) {
       case RECEIVE_CHECK_RECORDS: {
