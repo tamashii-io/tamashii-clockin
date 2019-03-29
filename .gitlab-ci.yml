@@ -33,7 +33,7 @@ before_script:
   - apt-get update && apt-get install apt-transport-https -y
   - echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
   - apt-get update && apt-get install yarn -y
-  - gem install bundler -v 1.17.3 --no-ri --no-rdoc    # bundler is not installed with the image
+  - gem install bundler -v 1.17.3  # bundler is not installed with the image
   - ruby -v
   - node -v
   - yarn -v
