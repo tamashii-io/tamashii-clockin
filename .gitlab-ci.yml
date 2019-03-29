@@ -9,7 +9,7 @@ services:
 variables:
   RAILS_ENV: test
   POSTGRES_DB: tamashii
-  NODE_VERSION: 8.0.0
+  NODE_VERSION: 10.0.0
   YARN_VERSION: 1.15.2
   DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
 
