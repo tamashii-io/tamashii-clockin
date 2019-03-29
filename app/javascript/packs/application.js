@@ -9,7 +9,10 @@
 /* global document:true */
 
 // NOTE: Add chart.js
-import 'coreui-react';
+import 'popper.js';
+import 'jquery';
+import 'bootstrap';
+import 'chart.js';
 
 import Mounter from './helpers/mounter';
 import CheckrecordsTable from './checkrecords/check_records_table';

@@ -49,15 +49,9 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     arel (8.0.0)
     ast (2.4.0)
-    autoprefixer-rails (9.5.0)
-      execjs
     awesome_print (1.8.0)
     bcrypt (3.1.12)
     bindex (0.5.0)
-    bootstrap (4.0.0)
-      autoprefixer-rails (>= 6.0.3)
-      popper_js (>= 1.12.9, < 2)
-      sass (>= 3.5.2)
     builder (3.2.3)
     byebug (11.0.1)
     capistrano (3.11.0)
@@ -170,7 +164,6 @@ GEM
     parser (2.6.2.0)
       ast (~> 2.4.0)
     pg (0.21.0)
-    popper_js (1.14.5)
     powerpack (0.1.2)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -364,7 +357,6 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   awesome_print
-  bootstrap (~> 4.0.0.alpha6)
   byebug
   capistrano (~> 3.6)
   capistrano-passenger

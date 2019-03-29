@@ -13,9 +13,6 @@
 //= require rails-ujs
 //= require turbolinks
 //= require jquery
-//= require tether
-//= require popper
-//= require bootstrap-sprockets
 //= require_tree .
 
 // Main navigation
