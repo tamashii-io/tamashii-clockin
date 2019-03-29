@@ -311,28 +311,22 @@ GEM
     sshkit (1.18.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    tamashii (0.4.0)
+    tamashii (0.3.6)
       concurrent-ruby
       logger-colors
       nio4r
       rack
       redis
       tamashii-common
-      tamashii-config
-      tamashii-hookable
       websocket-driver
-    tamashii-common (0.2.0)
-    tamashii-config (0.2.0)
-      tamashii-hookable
-    tamashii-hookable (0.1.0)
-    tamashii-manager (0.3.0)
+    tamashii-common (0.1.6)
+    tamashii-manager (0.2.7)
       concurrent-ruby
       nio4r
       puma
       rack
-      tamashii (>= 0.4)
-      tamashii-common (>= 0.2)
-      tamashii-config
+      tamashii
+      tamashii-common
       websocket-driver
     temple (0.8.1)
     thor (0.20.3)
@@ -412,8 +406,9 @@ DEPENDENCIES
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)
-  tamashii-common (>= 0.1.6)
-  tamashii-manager (>= 0.2.4)
+  tamashii (~> 0.3.6)
+  tamashii-common (~> 0.1.6)
+  tamashii-manager (~> 0.2.4)
   timecop
   turbolinks (~> 5)
   tzinfo-data
@@ -422,4 +417,4 @@ DEPENDENCIES
   webpacker
 
 BUNDLED WITH
-   1.16.3
+   1.17.3
